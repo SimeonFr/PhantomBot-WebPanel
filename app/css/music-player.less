@@ -1,0 +1,50 @@
+/**
+ * music-player.less
+ * Created with PhpStorm
+ * User: Robin | Juraji
+ * Date: 12 okt 2015
+ * Time: 12:32
+ */
+@import "less/bootstrap/variables";
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: @gray-dark;
+  overflow: hidden;
+  color: @text-color;
+  font-family: @font-family-base;
+  font-size: @font-size-base;
+  line-height: @line-height-computed;
+}
+
+.player-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.info {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  padding: 5px;
+  background-color: @gray-darker;
+  border-bottom: 1px solid @gray-light;
+  .title {
+    margin: 0;
+    padding: 0;
+    a {
+      color: @text-color;
+      text-decoration: none;
+    }
+  }
+}

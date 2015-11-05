@@ -1,0 +1,113 @@
+/**
+ * switch-toggle.less
+ * Created with PhpStorm
+ * User: Robin | Juraji
+ * Date: 14 okt 2015
+ * Time: 03:16
+ */
+@import "../bootstrap/variables";
+
+.btn-toolbar .switch-toggle {
+  display: block;
+  float: left;
+  margin-left: 5px;
+}
+
+.switch-toggle {
+  display: inline-block;
+  color: @btn-default-color;
+  border-radius: @btn-border-radius-base;
+  background-color: @btn-default-bg;
+  border: @btn-default-border;
+  padding: 12px 15px;
+  font-size: @font-size-base;
+  &.st-sm {
+    padding: 8px 9px;
+    border-radius: @btn-border-radius-small;
+    font-size: @font-size-small;
+    .switch {
+      margin-top: 6px;
+    }
+  }
+  &.st-no-bg {
+    background-color: transparent;
+    border: none;
+  }
+  .switch-label-text, .switch {
+    position: relative;
+    float: left;
+  }
+  .switch {
+    margin-left: 10px;
+    margin-top: 8px;
+    width: 40px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    .switch-checkbox {
+      display: none;
+      &:checked + .switch-label {
+        background-color: darken(@brand-success, 20%);
+        &:before {
+          right: 0px;
+          background-color: @brand-success;
+        }
+      }
+      &:disabled + .switch-label {
+        background-color: darken(@gray-light, 20%);
+        &:before {
+          background-color: @gray-light;
+          box-shadow: none;
+        }
+      }
+    }
+    .switch-label {
+      display: block;
+      overflow: hidden;
+      cursor: pointer;
+      height: 8px;
+      padding: 0;
+      line-height: 5px;
+      border-radius: 5px;
+      background-color: darken(@brand-danger, 20%);
+      transition: background-color 0.3s ease-in 0s;
+      &:before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 16px;
+        margin: -4px;
+        background: @brand-danger;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 31px;
+        border-radius: 15px;
+        box-shadow: 0 0 9px 0px rgba(0,0,0, .5);
+        transition: right 0.3s ease-in 0s;
+      }
+    }
+  }
+  &.no-false {
+    .switch {
+      .switch-checkbox {
+        &:checked + .switch-label {
+          background-color: darken(@brand-info, 20%);
+          &:before {
+            right: 0px;
+            background-color: @brand-info;
+          }
+        }
+      }
+    }
+    .switch-label {
+      background-color: darken(@brand-info, 20%);
+      &:before {
+        background-color: @brand-info;
+      }
+    }
+  }
+}
