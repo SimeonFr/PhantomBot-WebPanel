@@ -394,7 +394,7 @@ function saveToConfig(settingPath, inputId, button) {
 function setActiveMenuItem(partUrl) {
   $('.active').removeClass('active');
   $('#menu-parent-' + partUrl.replace('static/', '').replace(/([a-z]+).*/i, '$1')).addClass('active');
-  $('#menu-favorites-' + partUrl.replace(/.*\/([^-]+).*\.php/i, '$1')).addClass('active');
+  $('#menu-favorites-' + partUrl.replace(/.*\/|-|\.php/ig, '')).addClass('active');
 }
 
 function setBotStatus() {
@@ -584,7 +584,7 @@ function updateFavoritesMenu(itemName, itemPath) {
     });
     for (i in favorites) {
       //noinspection JSUnfilteredForInLoop
-      favoritesMenu.append($('<li class="favorites-item" id="menu-favorites-' + favorites[i].itemName.toLocaleLowerCase() + '"><a nohref onclick="openPart(\''
+      favoritesMenu.append($('<li class="favorites-item" id="menu-favorites-' + favorites[i].itemName.replace(' ', '').toLocaleLowerCase() + '"><a nohref onclick="openPart(\''
       + favorites[i].itemPath + '\')" role="button">' + favorites[i].itemName + '</a></li>'));
     }
   }
