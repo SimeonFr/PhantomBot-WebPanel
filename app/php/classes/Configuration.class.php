@@ -51,6 +51,10 @@ class Configuration
     // Compatible PhantomBot version
     $this->pBCompat = '1.6.4-stable';
   }
+  
+  if (!is_array($this->paths)) {
+    $this->paths = [];
+  }
 
   /**
    * @param string $settingPath
@@ -89,12 +93,7 @@ class Configuration
         $data['CONFIG HELP'] = [
           'Slashes' => 'Slashes in this file NEED to be escaped',
         ];
-        $fileSaveSuccess = @file_put_contents($this->configFileName, json_encode($data, JSON_PRETTY_PRINT));
-        if ($fileSaveSuccess) {
-          return chmod($this->configFileName, 0744);
-        } else {
-          return false;
-        }
+        return @file_put_contents($this->configFileName, json_encode($data, JSON_PRETTY_PRINT));
       } else {
         return false;
       }
