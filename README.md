@@ -15,7 +15,7 @@ Installation
 
   * PhantomBot 1.6.4 or later.
   * A php enabled webserver (Try [Apache](http://www.apache.org/))
-  * Make sure any folder, within the webroot, is writable by your webserver
+  * Make sure that './app/content/vars' is writeable by your webserver!
   
 ###Required Information:###
   * Bot Address: The IP address of your bot, if you've installed PhantomBot locally this will be *localhost*.
