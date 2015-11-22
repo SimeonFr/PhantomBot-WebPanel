@@ -23,7 +23,7 @@ class Configuration
 
   public function Configuration($isInstall = false)
   {
-    $this->configFileName = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/content/vars/config.php';
+    $this->configFileName = BASEPATH . '/app/content/vars/config.php';
     if (!$isInstall) {
       if (!file_exists($this->configFileName)) {
         header('Location: http://' . filter_input(INPUT_SERVER, 'SERVER_NAME') . '/app/php/install.php');
@@ -46,14 +46,14 @@ class Configuration
       }
     }
 
+    if (!is_array($this->paths)) {
+      $this->paths = [];
+    }
+
     // App version
-    $this->version = @file_get_contents(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/content/vars/current_version.txt');
+    $this->version = @file_get_contents(BASEPATH . '/app/content/vars/current_version.txt');
     // Compatible PhantomBot version
     $this->pBCompat = '1.6.4-stable';
-  }
-  
-  if (!is_array($this->paths)) {
-    $this->paths = [];
   }
 
   /**
@@ -89,22 +89,22 @@ class Configuration
    */
   public function _saveToConfig($data){
     if (!file_exists($this->configFileName)) {
-      if (is_writeable(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT'))) {
+      if (@file_put_contents($this->configFileName, '')) {
         $data['CONFIG HELP'] = [
-          'Slashes' => 'Slashes in this file NEED to be escaped',
+            'Slashes' => 'Slashes in this file NEED to be escaped',
         ];
         return @file_put_contents($this->configFileName, json_encode($data, JSON_PRETTY_PRINT));
       } else {
         return false;
       }
     } else {
-      $existingFile = @file_get_contents($this->configFileName);
-      if ($existingFile) {
+      $existingFile = file_get_contents($this->configFileName);
+      if ($existingFile !== false) {
         $existingFile = json_decode($existingFile, true);
         foreach ($data as $key => $value) {
           $existingFile[$key] = $value;
         }
-        return (@file_put_contents($this->configFileName, json_encode($existingFile, JSON_PRETTY_PRINT)));
+        return @file_put_contents($this->configFileName, json_encode($existingFile, JSON_PRETTY_PRINT));
       } else {
         return false;
       }

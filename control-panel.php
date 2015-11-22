@@ -6,10 +6,12 @@
  * Date: 12 okt 2015
  * Time: 12:47
  */
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/Configuration.class.php');
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/ConnectionHandler.class.php');
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/Functions.class.php');
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/ComponentTemplates.class.php');
+define('BASEPATH', realpath(dirname(__FILE__)));
+
+require_once(BASEPATH . '/app/php/classes/Configuration.class.php');
+require_once(BASEPATH . '/app/php/classes/ConnectionHandler.class.php');
+require_once(BASEPATH . '/app/php/classes/Functions.class.php');
+require_once(BASEPATH . '/app/php/classes/ComponentTemplates.class.php');
 
 $config = new Configuration();
 $connection = new ConnectionHandler($config, true);
@@ -161,7 +163,7 @@ if ($latestFollower) {
 </div>
 <div id="general-alert" class="alert"></div>
 <div id="music-player-controls">
-  <?php require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/parts/static/music-player-controls.php'); ?>
+  <?php require_once(BASEPATH . '/app/parts/static/music-player-controls.php'); ?>
 </div>
 </body>
 </html>

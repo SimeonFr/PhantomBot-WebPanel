@@ -6,10 +6,12 @@
  * Date: 12 okt 2015
  * Time: 12:48
  */
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/Configuration.class.php');
+define('BASEPATH', realpath(dirname(__FILE__)));
+
+require_once(BASEPATH . '/app/php/classes/Configuration.class.php');
 
 $config = new Configuration();
-$updatesDir = array_diff(scandir(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/updates'), [
+$updatesDir = array_diff(scandir(BASEPATH . '/updates'), [
     '.',
     '..',
     'current_version.txt',
@@ -21,8 +23,8 @@ $installedUpdates = '';
 $notification = [];
 $updateNotes = [];
 
-if (touch(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/content/vars/current_version.txt')) {
-  $currentUpdate = @file_get_contents(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/content/vars/current_version.txt');
+if (touch(BASEPATH . '/app/content/vars/current_version.txt')) {
+  $currentUpdate = @file_get_contents(BASEPATH . '/app/content/vars/current_version.txt');
 } else {
   throw new Exception('Could not read or create current version file! Make sure your webserver has write access to the "./app/content/vars" folder');
 }
@@ -33,14 +35,14 @@ foreach ($updatesDir as $updateScript) {
   }
   $updateNo = floatval(str_replace('.php', '', $updateScript));
   if ($updateNo > floatval($currentUpdate)) {
-    require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/updates/' . $updateScript);
+    require_once(BASEPATH . '/updates/' . $updateScript);
     $installedUpdates .= '<li>Installed update: ' . $updateNo . '</li>';
     $updateInstalledTo = $updateNo;
   }
 }
 
 if ($updateInstalledTo > -1) {
-  @file_put_contents(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/content/vars/current_version.txt', $updateInstalledTo);
+  @file_put_contents(BASEPATH . '/app/content/vars/current_version.txt', $updateInstalledTo);
   $notification[] = 'Updates Installed!';
   $notification[] = 'You are now on version ' . $updateInstalledTo . '!';
 } else {

@@ -6,10 +6,12 @@
  * Date: 12 okt 2015
  * Time: 12:42
  */
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/Configuration.class.php');
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/ConnectionHandler.class.php');
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/Functions.class.php');
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/ComponentTemplates.class.php');
+define('BASEPATH', realpath(dirname(__FILE__)) . '/../../..');
+
+require_once(BASEPATH . '/app/php/classes/Configuration.class.php');
+require_once(BASEPATH . '/app/php/classes/ConnectionHandler.class.php');
+require_once(BASEPATH . '/app/php/classes/Functions.class.php');
+require_once(BASEPATH . '/app/php/classes/ComponentTemplates.class.php');
 
 $config = new Configuration();
 $connection = new ConnectionHandler($config);
@@ -44,7 +46,7 @@ foreach ($greetingSettings as $username => $greeting) {
 
       <div class="row">
         <div class="col-sm-6">
-          <?= $templates->botCommandForm('greeting setdefault', 'Set global greeting message', 'message', $greetingSettings['_default']) ?>
+          <?= $templates->botCommandForm('greeting setdefault', 'Set global greeting message', 'message', (array_key_exists('_default', $greetingSettings) ? $greetingSettings['_default'] : '')) ?>
         </div>
         <div class="col-sm-4 col-sm-offset-2">
           <?= $templates->informationPanel('Users can set their own greeting using "!greeting set &lt;message&gt;". Then enable/disable the greeting by using "!greeting &lt;enable/disable&gt;".') ?>

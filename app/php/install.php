@@ -6,7 +6,9 @@
  * Date: 12 okt 2015
  * Time: 12:46
  */
-require_once(filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/app/php/classes/Configuration.class.php');
+define('BASEPATH', realpath(dirname(__FILE__)) . '/../..');
+
+require_once(BASEPATH . '/app/php/classes/Configuration.class.php');
 
 $config = new Configuration(true);
 $input = filter_input_array(INPUT_POST);
