@@ -6,11 +6,10 @@
  * Date: 12 okt 2015
  * Time: 12:46
  */
-define('BASEPATH', realpath(dirname(__FILE__)) . '/../..');
 
-require_once(BASEPATH . '/app/php/classes/Configuration.class.php');
-require_once(BASEPATH . '/app/php/classes/ConnectionHandler.class.php');
-require_once(BASEPATH . '/app/php/classes/Functions.class.php');
+require_once('classes/Configuration.class.php');
+require_once('classes/ConnectionHandler.class.php');
+require_once('classes/Functions.class.php');
 
 $config = new Configuration();
 $connection = new ConnectionHandler($config);

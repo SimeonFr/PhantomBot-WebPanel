@@ -12,6 +12,15 @@ require_once(BASEPATH . '/app/php/classes/Configuration.class.php');
 require_once(BASEPATH . '/app/php/classes/ConnectionHandler.class.php');
 require_once(BASEPATH . '/app/php/classes/Functions.class.php');
 require_once(BASEPATH . '/app/php/classes/ComponentTemplates.class.php');
+require_once(BASEPATH . '/app/php/classes/PanelSession.class.php');
+
+
+$session = new PanelSession($_COOKIE['PHPSESSID']);
+if (!$session->checkSessionToken(filter_input(INPUT_POST, 'token'))) {
+  die('Invalid session token. Are you trying to hack me?!');
+}
+
+
 
 $config = new Configuration();
 $connection = new ConnectionHandler($config);

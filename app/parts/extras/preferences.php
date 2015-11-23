@@ -12,6 +12,13 @@ require_once(BASEPATH . '/app/php/classes/Configuration.class.php');
 require_once(BASEPATH . '/app/php/classes/ConnectionHandler.class.php');
 require_once(BASEPATH . '/app/php/classes/Functions.class.php');
 require_once(BASEPATH . '/app/php/classes/ComponentTemplates.class.php');
+require_once(BASEPATH . '/app/php/classes/PanelSession.class.php');
+
+
+$session = new PanelSession($_COOKIE['PHPSESSID']);
+if (!$session->checkSessionToken(filter_input(INPUT_POST, 'token'))) {
+  die('Invalid session token. Are you trying to hack me?!');
+}
 
 $config = new Configuration();
 $connection = new ConnectionHandler($config);
@@ -72,7 +79,8 @@ $botSettings = $functions->getIniArray('settings');
             <label>PhantomBot webserver address</label>
 
             <div class="input-group">
-              <input type="text" class="form-control" id="setting-bot-ip" placeholder="<?= $config->botIp ?>" value="<?= $config->botIp ?>"/>
+              <input type="text" class="form-control" id="setting-bot-ip" placeholder="<?= $config->botIp ?>"
+                     value="<?= $config->botIp ?>"/>
               <span class="input-group-btn">
                 <button class="btn btn-primary" onclick="saveToConfig('botIp', 'setting-bot-ip', this)">Save</button>
               </span>
@@ -89,15 +97,19 @@ $botSettings = $functions->getIniArray('settings');
             <label>PhantomBot webserver base port</label>
 
             <div class="input-group">
-              <input type="number" class="form-control" id="setting-bot-base-port" placeholder="<?= $config->botBasePort ?>"
+              <input type="number" class="form-control" id="setting-bot-base-port"
+                     placeholder="<?= $config->botBasePort ?>"
                      value="<?= $config->botBasePort ?>"/>
               <span class="input-group-btn">
-                <button class="btn btn-primary" onclick="saveToConfig('botBasePort', 'setting-bot-base-port', this)">Save</button>
+                <button class="btn btn-primary" onclick="saveToConfig('botBasePort', 'setting-bot-base-port', this)">
+                  Save
+                </button>
               </span>
             </div>
 
             <p class="text-muted">
-              This is by default "25000". Only change it if you have entered a custom port at the PhantomBot installation!
+              This is by default "25000". Only change it if you have entered a custom port at the PhantomBot
+              installation!
             </p>
           </div>
         </div>
@@ -108,9 +120,11 @@ $botSettings = $functions->getIniArray('settings');
             <span>Username for bot</span>
 
             <div class="input-group">
-              <input type="text" class="form-control" id="setting-bot-name" placeholder="<?= $config->botName ?>" value="<?= $config->botName ?>"/>
+              <input type="text" class="form-control" id="setting-bot-name" placeholder="<?= $config->botName ?>"
+                     value="<?= $config->botName ?>"/>
               <span class="input-group-btn">
-                <button class="btn btn-primary" onclick="saveToConfig('botName', 'setting-bot-name', this)">Save</button>
+                <button class="btn btn-primary" onclick="saveToConfig('botName', 'setting-bot-name', this)">Save
+                </button>
               </span>
             </div>
 
@@ -124,14 +138,18 @@ $botSettings = $functions->getIniArray('settings');
             <label>Bot account Oauth token</label>
 
             <div class="input-group">
-              <input type="text" class="form-control" id="bot-oauth" placeholder="<?= $config->botOauthToken ?>" value="<?= $config->botOauthToken ?>"/>
+              <input type="password" class="form-control" id="bot-oauth"
+                     placeholder="oauth:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" value="<?= $config->botOauthToken ?>"/>
               <span class="input-group-btn">
-                <button class="btn btn-primary" onclick="saveToConfig('botOauthToken', 'setting-bot-oauth', this)">Save</button>
+                <button class="btn btn-primary" onclick="saveToConfig('botOauthToken', 'setting-bot-oauth', this)">
+                  Save
+                </button>
               </span>
             </div>
 
             <p class="text-muted">
-              This can be found in &quot;botlogin.txt&quot; in the installation folder of PhantomBot. (Use the &quot;oauth&quot; one)
+              This can be found in &quot;botlogin.txt&quot; in the installation folder of PhantomBot. (Use the &quot;oauth&quot;
+              one)
             </p>
           </div>
         </div>
@@ -142,9 +160,11 @@ $botSettings = $functions->getIniArray('settings');
             <span>Channel owner username</span>
 
             <div class="input-group">
-              <input type="text" class="form-control" id="setting-bot-owner" placeholder="<?= $config->channelOwner ?>" value="<?= $config->channelOwner ?>"/>
+              <input type="text" class="form-control" id="setting-bot-owner" placeholder="<?= $config->channelOwner ?>"
+                     value="<?= $config->channelOwner ?>"/>
               <span class="input-group-btn">
-                <button class="btn btn-primary" onclick="saveToConfig('channelOwner', 'setting-bot-owner', this)">Save</button>
+                <button class="btn btn-primary" onclick="saveToConfig('channelOwner', 'setting-bot-owner', this)">Save
+                </button>
               </span>
             </div>
           </div>
@@ -159,10 +179,13 @@ $botSettings = $functions->getIniArray('settings');
             <span>Latest follower file</span>
 
             <div class="input-group">
-              <input type="text" class="form-control" id="setting-path-follower" placeholder="<?= $config->paths['latestFollower'] ?>"
+              <input type="text" class="form-control" id="setting-path-follower"
+                     placeholder="<?= $config->paths['latestFollower'] ?>"
                      value="<?= $config->paths['latestFollower'] ?>"/>
               <span class="input-group-btn">
-                <button class="btn btn-primary" onclick="saveToConfig('paths/latestFollower', 'setting-path-follower', this)">Save</button>
+                <button class="btn btn-primary"
+                        onclick="saveToConfig('paths/latestFollower', 'setting-path-follower', this)">Save
+                </button>
               </span>
             </div>
           </div>
@@ -172,10 +195,13 @@ $botSettings = $functions->getIniArray('settings');
             <span>Latest donation file</span>
 
             <div class="input-group">
-              <input type="text" class="form-control" id="setting-path-donation" placeholder="<?= $config->paths['latestDonation'] ?>"
+              <input type="text" class="form-control" id="setting-path-donation"
+                     placeholder="<?= $config->paths['latestDonation'] ?>"
                      value="<?= $config->paths['latestDonation'] ?>"/>
               <span class="input-group-btn">
-                <button class="btn btn-primary" onclick="saveToConfig('paths/latestDonation', 'setting-path-donation', this)">Save</button>
+                <button class="btn btn-primary"
+                        onclick="saveToConfig('paths/latestDonation', 'setting-path-donation', this)">Save
+                </button>
               </span>
             </div>
           </div>
@@ -187,10 +213,13 @@ $botSettings = $functions->getIniArray('settings');
             <span>Latest current song file</span>
 
             <div class="input-group">
-              <input type="text" class="form-control" id="setting-path-current-song" placeholder="<?= $config->paths['youtubeCurrentSong'] ?>"
+              <input type="text" class="form-control" id="setting-path-current-song"
+                     placeholder="<?= $config->paths['youtubeCurrentSong'] ?>"
                      value="<?= $config->paths['youtubeCurrentSong'] ?>"/>
               <span class="input-group-btn">
-                <button class="btn btn-primary" onclick="saveToConfig('paths/youtubeCurrentSong', 'setting-path-current-song', this)">Save</button>
+                <button class="btn btn-primary"
+                        onclick="saveToConfig('paths/youtubeCurrentSong', 'setting-path-current-song', this)">Save
+                </button>
               </span>
             </div>
           </div>
@@ -200,10 +229,13 @@ $botSettings = $functions->getIniArray('settings');
             <span>Latest song requests file</span>
 
             <div class="input-group">
-              <input type="text" class="form-control" id="setting-path-playlist" placeholder="<?= $config->paths['youtubePlaylist'] ?>"
+              <input type="text" class="form-control" id="setting-path-playlist"
+                     placeholder="<?= $config->paths['youtubePlaylist'] ?>"
                      value="<?= $config->paths['youtubePlaylist'] ?>"/>
               <span class="input-group-btn">
-                <button class="btn btn-primary" onclick="saveToConfig('paths/youtubePlaylist', 'setting-path-playlist', this)">Save</button>
+                <button class="btn btn-primary"
+                        onclick="saveToConfig('paths/youtubePlaylist', 'setting-path-playlist', this)">Save
+                </button>
               </span>
             </div>
           </div>

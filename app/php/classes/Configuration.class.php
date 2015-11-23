@@ -23,10 +23,10 @@ class Configuration
 
   public function Configuration($isInstall = false)
   {
-    $this->configFileName = BASEPATH . '/app/content/vars/config.php';
+    $this->configFileName = realpath(dirname(__FILE__)) . '/../../../app/content/vars/config.php';
     if (!$isInstall) {
       if (!file_exists($this->configFileName)) {
-        header('Location: http://' . filter_input(INPUT_SERVER, 'SERVER_NAME') . '/app/php/install.php');
+        header('Location: install.php');
       }
       $configFileContent = @file_get_contents($this->configFileName);
       if ($configFileContent) {

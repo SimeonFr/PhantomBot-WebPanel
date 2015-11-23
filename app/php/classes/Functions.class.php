@@ -7,11 +7,13 @@
  * Time: 12:46
  */
 require_once('SortedDirectoryIterator.class.php');
+require_once('PanelSession.class.php');
 
 class Functions
 {
   private $config;
   private $connection;
+  private $session;
 
   /**
    * @param Configuration $config
@@ -21,6 +23,7 @@ class Functions
   {
     $this->config = $config;
     $this->connection = $connection;
+    $this->session = new PanelSession();
   }
 
   /**
@@ -64,13 +67,14 @@ class Functions
   }
 
   /**
-   * @param string $error
-   * @param int $errorNo
+   * @param string $action
    * @param int $status
+   * @param int $errorNo
+   * @param string $error
    */
-  public function sendBackError($error, $status = 500, $errorNo = 500)
+  public function sendBackError($action, $status = 500, $errorNo = 500, $error = '')
   {
-    echo json_encode(['', $status, $errorNo, $error]);
+    echo json_encode([$action, $status, $errorNo, $error]);
   }
 
   /**
@@ -206,7 +210,7 @@ class Functions
     }
   }
 
-  public function getMusicPlayerPlaylist($requestsFilePath, $internal = false)
+  public function getMusicPlayerPlaylist($requestsFilePath)
   {
     $parsedList = '';
     $requestsFile = $this->getOtherFile($requestsFilePath);
@@ -239,7 +243,7 @@ class Functions
   public function getJSConfig()
   {
     $this->sendBackOk([
-        'owner'   => strtolower($this->config->channelOwner),
+        'owner' => strtolower($this->config->channelOwner),
         'botName' => strtolower($this->config->botName),
     ]);
   }
@@ -248,8 +252,9 @@ class Functions
   {
     $this->sendBackOk([
         'botAdress' => strtolower($this->config->botIp),
-        'botName'   => strtolower($this->config->botName),
-        'owner'     => strtolower($this->config->channelOwner),
+        'botName' => strtolower($this->config->botName),
+        'owner' => strtolower($this->config->channelOwner),
+        'token' => $this->session->getSessionToken(),
     ]);
   }
 

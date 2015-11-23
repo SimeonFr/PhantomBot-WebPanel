@@ -9,8 +9,8 @@ var pBotStorage = {
       keys: {
         twitchCache: 'pbot-twitch-cache',
         chatDefaultState: 'pbot-chat-state',
-        lastUsedPart: 'pbot-last-used-part',
         panelLogin: 'pbot-login',
+        lastUsedPart: 'pbot-last-used-part',
         favoritesMenuItems: 'pbot-favorites-menu-items',
         informationActive: 'pbot-information-active',
         tooltipsActive: 'pbot-tooltips-active',
@@ -30,9 +30,10 @@ var pBotStorage = {
     },
     pBotData = {
       config: {
-        owner: null,
-        botName: null,
+        owner: '',
+        botName: '',
         isBotOnline: false,
+        token: '',
       },
       login: null,
       touchedCollapsibles: [],
@@ -56,7 +57,7 @@ $(window).ready(function () {
     getPanelConfig();
 
     /* Get bot status */
-    setBotStatus();
+    getBotStatus();
 
     /* Bind click event to dropdown-toggles to toggle their respective lists */
     bindGlobalEventHandlers();
@@ -64,14 +65,13 @@ $(window).ready(function () {
     /* Load up the favorites menu */
     updateFavoritesMenu();
 
-    /* Open last used part */
-    loadPartFromStorage();
-
     /* Set interval to update channel data every 30 minutes */
     setInterval(function () {
       loadChannelData();
-      setBotStatus();
+      getBotStatus();
     }, 6e5);
+  } else {
+    logOut();
   }
 });
 
@@ -243,8 +243,8 @@ function doBotRequest(action, callback, params) {
     return;
   }
   $.ajax({
-    type: "POST",
-    url: '/app/php/connect.php',
+    type: 'POST',
+    url: 'app/php/connect.php',
     data: $.extend({action: action}, params, pBotData.login),
     dataType: 'json',
     success: function (data) {
@@ -289,6 +289,7 @@ function getPanelConfig() {
         toggleTooltips(true);
         setMusicPlayerVolume(pBotData.musicPlayerControls.volume, true, true);
         toggleChat(true, $('#toggle-chat'));
+        loadPartFromStorage();
 
       } else {
         showLoginAlert(data[3])
@@ -346,15 +347,13 @@ function loadChannelData(skipCache) {
 function loadPartFromStorage() {
   var partUrl = pBotStorage.get(pBotStorage.keys.lastUsedPart, 'static/dashboard.php');
   setActiveMenuItem(partUrl);
-  $('#part-window').load('/app/parts/' + partUrl, bindPartEventHandlers);
+  $('#part-window').load('app/parts/' + partUrl, {token: pBotData.config.token}, bindPartEventHandlers);
 }
 
 //noinspection JSUnusedGlobalSymbols
 function logOut() {
-  var i = 0;
-  for (i; i < 3; i++) {
-    localStorage.removeItem(pBotStorage.keys[i]);
-  }
+  localStorage.removeItem(pBotStorage.keys.twitchCache);
+  localStorage.removeItem(pBotStorage.keys.panelLogin);
   location.replace('/');
 }
 
@@ -363,9 +362,10 @@ function openPart(partUrl, filters) {
   pBotData.touchedCollapsibles = [];
   setActiveMenuItem(partUrl);
   if (filters) {
-    $('#part-window').load('/app/parts/' + partUrl, filters, bindPartEventHandlers);
+    filters = $.extend(filters, {token: pBotData.config.token});
+    $('#part-window').load('app/parts/' + partUrl, filters, bindPartEventHandlers);
   } else {
-    $('#part-window').load('/app/parts/' + partUrl, bindPartEventHandlers);
+    $('#part-window').load('app/parts/' + partUrl, {token: pBotData.config.token}, bindPartEventHandlers);
   }
   pBotStorage.set(pBotStorage.keys.lastUsedPart, partUrl);
 }
@@ -397,10 +397,10 @@ function setActiveMenuItem(partUrl) {
   $('#menu-favorites-' + partUrl.replace(/.*\/|-|\.php/ig, '')).addClass('active');
 }
 
-function setBotStatus() {
+function getBotStatus() {
   $.ajax({
-    type: "POST",
-    url: '/app/php/connect.php',
+    type: 'POST',
+    url: 'app/php/connect.php',
     data: $.extend({action: 'testBotConnection'}, pBotData.login),
     dataType: 'json',
     success: function (data) {
@@ -584,8 +584,8 @@ function updateFavoritesMenu(itemName, itemPath) {
     });
     for (i in favorites) {
       //noinspection JSUnfilteredForInLoop
-      favoritesMenu.append($('<li class="favorites-item" id="menu-favorites-' + favorites[i].itemName.replace(' ', '').toLocaleLowerCase() + '"><a nohref onclick="openPart(\''
-      + favorites[i].itemPath + '\')" role="button">' + favorites[i].itemName + '</a></li>'));
+      favoritesMenu.append($('<li class="favorites-item" id="menu-favorites-' + favorites[i].itemName.replace(' ', '').toLocaleLowerCase()
+          + '"><a nohref onclick="openPart(\'' + favorites[i].itemPath + '\')" role="button">' + favorites[i].itemName + '</a></li>'));
     }
   }
 }
