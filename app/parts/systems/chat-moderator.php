@@ -15,7 +15,7 @@ require_once(BASEPATH . '/app/php/classes/ComponentTemplates.class.php');
 require_once(BASEPATH . '/app/php/classes/PanelSession.class.php');
 
 
-$session = new PanelSession($_COOKIE['PHPSESSID']);
+$session = new PanelSession();
 if (!$session->checkSessionToken(filter_input(INPUT_POST, 'token'))) {
   die('Invalid session token. Are you trying to hack me?!');
 }
