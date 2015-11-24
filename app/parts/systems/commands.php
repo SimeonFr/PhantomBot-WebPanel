@@ -60,7 +60,7 @@ foreach ($customCommandsIni as $command => $message) {
   } elseif (array_key_exists($command . '_recursive', $commandPermIni)) {
     $perm = $groups[$commandPermIni[$command . '_recursive']] . '+';
   } else {
-    $perm = '';
+    $perm = 'Viewer';
   }
   if (preg_match('/\([0-9]\)|\([.]{3}\)/i', $message)) {
     $actor = $templates->botCommandForm($command, '', '!' . $command, null, 'Send');

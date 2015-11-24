@@ -64,11 +64,13 @@ function saveError()
     <div class="panel-body">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <form action="install.php" method="post" name="step1" style="display:<?= ($nextInstallationStep == 1 ? 'block' : 'none') ?>">
+          <form action="install.php" method="post" name="step1"
+                style="display:<?= ($nextInstallationStep == 1 ? 'block' : 'none') ?>">
             <h2>Hey!</h2>
 
             <p>
-              Before you can start using the PhantomBot Web Panel, I&rsquo;m going to need some information about the PhantomBot installation first.
+              Before you can start using the PhantomBot Web Panel, I&rsquo;m going to need some information about the
+              PhantomBot installation first.
             </p>
 
             <div class="form-group">
@@ -85,7 +87,8 @@ function saveError()
               <input type="number" placeholder="Default: 25000" name="botBasePort" class="form-control" value="25000"/>
 
               <p class="text-muted">
-                This is by default "25000". Only change it if you have entered a custom port at the PhantomBot installation!
+                This is by default "25000". Only change it if you have entered a custom port at the PhantomBot
+                installation!
               </p>
             </div>
             <div class="form-group">
@@ -98,10 +101,12 @@ function saveError()
             </div>
             <div class="form-group">
               <label>Bot Account Oauth token</label>
-              <input type="text" placeholder="oauth:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" name="botOauthToken" class="form-control"/>
+              <input type="text" placeholder="oauth:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" name="botOauthToken"
+                     class="form-control"/>
 
               <p class="text-muted">
-                This can be found in &quot;botlogin.txt&quot; in the installation folder of PhantomBot. (Use the &quot;oauth&quot; one)
+                This can be found in &quot;botlogin.txt&quot; in the installation folder of PhantomBot. (Use the &quot;oauth&quot;
+                one)
               </p>
             </div>
             <div class="form-group">
@@ -111,7 +116,8 @@ function saveError()
             <input type="hidden" name="currentStep" value="<?= $nextInstallationStep ?>"/>
             <button class="btn btn-primary btn-block">Continue</button>
           </form>
-          <form action="install.php" method="post" name="step2" style="display:<?= ($nextInstallationStep == 2 ? 'block' : 'none') ?>">
+          <form action="install.php" method="post" name="step2"
+                style="display:<?= ($nextInstallationStep == 2 ? 'block' : 'none') ?>">
             <p>
               Create a user account for the PhantomBot Web Panel.
             </p>
@@ -147,9 +153,11 @@ function saveError()
       PhantomBot Control Panel
       <small><?= $config->version ?></small>
       , developed by <a href="//juraji.nl" target="_blank">Juraji</a> &copy;<?= date('Y') ?><br/>
-      Compatible with <a href="//www.phantombot.net/" target="_blank">PhantomBot <?= $config->pBCompat ?></a>, developed by <a
-          href="//phantombot.net/members/phantomindex.1/" target="_blank">PhantomIndex</a>, <a href="//phantombot.net/members/gloriouseggroll.2/"
-                                                                                               target="_blank">GloriousEggroll</a> &amp; <a
+      Compatible with <a href="//www.phantombot.net/" target="_blank">PhantomBot <?= $config->pBCompat ?></a>, developed
+      by <a
+          href="//phantombot.net/members/phantomindex.1/" target="_blank">PhantomIndex</a>, <a
+          href="//phantombot.net/members/gloriouseggroll.2/"
+          target="_blank">GloriousEggroll</a> &amp; <a
           href="//phantombot.net/members/gmt2001.28/" target="_blank">gmt2001</a>
     </div>
   </div>

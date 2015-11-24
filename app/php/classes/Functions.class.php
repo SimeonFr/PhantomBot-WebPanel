@@ -92,13 +92,13 @@ class Functions
    */
   public function cleanYTVideoTitle($YTVideoTitle)
   {
-    return preg_replace('/^[a-z0-9_-]{11}\s[0-9]+\.\s|\[[a-z0-9\s]+\]\s-\s|\[[a-z\s]+\]/i', '',
-        str_replace([
+    return str_replace([
             '(OUT NOW!) ',
             '【Trap】',
             '(Official Video)',
             '(HQ)',
-        ], '', $YTVideoTitle));
+            '"',
+        ], '', $YTVideoTitle);
   }
 
   public function getCurrentTitle()

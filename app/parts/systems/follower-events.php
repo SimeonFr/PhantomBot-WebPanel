@@ -61,11 +61,6 @@ foreach ($recordedFollows as $username => $follows) {
 
       <div class="collapsible-content">
         <div class="row">
-          <div class="col-sm-8">
-            <?= $templates->botCommandForm('followmessage', 'Message on follow', 'message', (array_key_exists('followmessage', $botSettings) ? $botSettings['followmessage'] : '')) ?>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-sm-4">
             <?= $templates->botCommandForm('followreward', 'Points reward on follow', 'amount', (array_key_exists('followreward', $botSettings) ? $botSettings['followreward'] : '')) ?>
           </div>

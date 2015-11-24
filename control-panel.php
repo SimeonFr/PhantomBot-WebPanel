@@ -87,13 +87,15 @@ if ($latestFollower) {
   <meta charset="UTF-8">
   <title></title>
   <link href="app/css/style.css" rel="stylesheet" type="text/css"/>
-  <script src="/app/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+  <link href="app/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-  <script src="/app/js/date.min.js" type="text/javascript"></script>
-  <script src="/app/js/app.min.js" type="text/javascript"></script>
-  <script src="/app/js/tooltip.min.js" type="text/javascript"></script>
-  <script src="/app/js/switch-toggle.min.js" type="text/javascript"></script>
+  <script src="app/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+  <script src="app/js/jquery-ui.min.js" type="text/javascript"></script>
+  <script src="app/js/date.min.js" type="text/javascript"></script>
+  <script src="app/js/app.min.js" type="text/javascript"></script>
+  <script src="app/js/tooltip.min.js" type="text/javascript"></script>
+  <script src="app/js/switch-toggle.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="page-wrapper" class="chat-responsive">

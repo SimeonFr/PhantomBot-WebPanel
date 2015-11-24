@@ -51,6 +51,10 @@ iframe {
   overflow: hidden;
 }
 
+a {
+  color: @brand-primary;
+}
+
 #page-wrapper {
   width: 100%;
   position: absolute;
@@ -400,6 +404,56 @@ iframe {
 
 #stream-preview-fit-video {
   display: none;
+}
+
+.volume-control {
+  display: block;
+  float: left;
+  color: #fff;
+  border-radius: 4px;
+  border: #464545;
+  padding: 4px 0;
+  width: 150px;
+  .fa-volume-up {
+    margin-top: 1px;
+    float: left;
+  }
+  #volume-indicator {
+    margin-left: 5px;
+    float: left;
+    width: 45px;
+  }
+  .volume-control-slider-wrapper {
+    float: left;
+    margin-top: 7px;
+    #volume-control-slider {
+      margin-left: 10px;
+      width: 118px;
+      height: 8px;
+      border-radius: 5px;
+      background-color: darken(@brand-info, 20%);
+      .ui-slider-handle {
+        width: 16px;
+        height: 16px;
+        border-radius: 15px;
+        background-color: @brand-info;
+        box-shadow: 0 0 9px 0 rgba(0,0,0,0.5);
+        margin-top: 2px;
+      }
+    }
+  }
+}
+
+.combined-bot-command-form {
+  input[type=text].form-control {
+    border-left: 3px solid @brand-primary;
+  }
+  .input-group-addon-select {
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    min-width: 250px;
+  }
 }
 
 @keyframes play-button-active {

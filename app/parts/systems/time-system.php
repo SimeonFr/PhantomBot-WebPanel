@@ -14,7 +14,6 @@ require_once(BASEPATH . '/app/php/classes/Functions.class.php');
 require_once(BASEPATH . '/app/php/classes/ComponentTemplates.class.php');
 require_once(BASEPATH . '/app/php/classes/PanelSession.class.php');
 
-
 $session = new PanelSession();
 if (!$session->checkSessionToken(filter_input(INPUT_POST, 'token'))) {
   die('Invalid session token. Are you trying to hack me?!');
@@ -87,31 +86,18 @@ foreach ($time as $username => $amount) {
       <h4 class="collapsible-master">Promotions from Time</h4>
 
       <div class="collapsible-content">
-        <p>
-          This feature enables to automatic group level up for viewers. Based on the amount of time set a viewer will become a Regular. (You cannot edit the
-          group for it.)
-        </p>
-
         <div class="row">
           <div class="col-sm-4">
             <div class="btn-toolbar">
               <?= $templates->switchToggle('Toggle Time Promotion', 'doQuickCommand', '[\'time autolevel\']',
                   null, (array_key_exists('timeLevel', $botSettings) && filter_var($botSettings['timeLevel'], FILTER_VALIDATE_BOOLEAN))) ?>
             </div>
-          </div>
-          <div class="col-sm-4">
+            <div class="spacer"></div>
             <?= $templates->botCommandForm('time promotehours', 'Set time before promoting viewers', 'hours', (array_key_exists('timePromoteHours', $botSettings) ? $botSettings['timePromoteHours'] : '')) ?>
           </div>
-        </div>
-      </div>
-      <hr/>
-      <h4 class="collapsible-master">Bot Event Logging</h4>
-
-      <div class="collapsible-content">
-        <div class="form-group">
-          <div class="btn-group btn-group-sm">
-            <?= $templates->botCommandButton('log enable', 'Enable Logs', (array_key_exists('logenable', $botSettings) && $botSettings['logenable'] == 1 ? 'success' : 'default')) ?>
-            <?= $templates->botCommandButton('log disable', 'Disable Logs', (array_key_exists('logenable', $botSettings) && $botSettings['logenable'] != 1 ? 'success' : 'default')) ?>
+          <div class="col-sm-4">&nbsp;</div>
+          <div class="col-sm-4">
+            <?= $templates->informationPanel('This feature enables to automatic group level up for viewers.<br />Based on the amount of time set a viewer will become a Regular. (You cannot edit the group for it.)') ?>
           </div>
         </div>
       </div>
@@ -119,27 +105,27 @@ foreach ($time as $username => $amount) {
       <?= $templates->dataTable('Viewers Time', ['Username', 'Time'], $timeTableRows, true, '', [
           [
               'display' => 'Sort Username a-z',
-              'name'    => 'username',
-              'value'   => 'ASC',
-              'active'  => (array_key_exists('username', $filter) && $filter['username'] == 'ASC'),
+              'name' => 'username',
+              'value' => 'ASC',
+              'active' => (array_key_exists('username', $filter) && $filter['username'] == 'ASC'),
           ],
           [
               'display' => 'Sort Username z-a',
-              'name'    => 'username',
-              'value'   => 'DESC',
-              'active'  => (array_key_exists('username', $filter) && $filter['username'] == 'DESC'),
+              'name' => 'username',
+              'value' => 'DESC',
+              'active' => (array_key_exists('username', $filter) && $filter['username'] == 'DESC'),
           ],
           [
               'display' => 'Sort Time Ascending',
-              'name'    => 'time',
-              'value'   => 'ASC',
-              'active'  => (array_key_exists('time', $filter) && $filter['time'] == 'ASC'),
+              'name' => 'time',
+              'value' => 'ASC',
+              'active' => (array_key_exists('time', $filter) && $filter['time'] == 'ASC'),
           ],
           [
               'display' => 'Sort Time Descending',
-              'name'    => 'time',
-              'value'   => 'DESC',
-              'active'  => (array_key_exists('time', $filter) && $filter['time'] == 'DESC'),
+              'name' => 'time',
+              'value' => 'DESC',
+              'active' => (array_key_exists('time', $filter) && $filter['time'] == 'DESC'),
           ],
       ]) ?>
     </div>

@@ -37,9 +37,9 @@ class ComponentTemplates
   {
     //$position = 'top', $offsetX = 0, $offsetY = 0, $replaceInRow = 0, $appendToBody = false
     $s = array_merge([
-        'position'     => ComponentTemplates::TOOLTIP_POS_TOP,
-        'offsetX'      => 0,
-        'offsetY'      => 0,
+        'position' => ComponentTemplates::TOOLTIP_POS_TOP,
+        'offsetX' => 0,
+        'offsetY' => 0,
         'replaceInRow' => 0,
         'appendToBody' => false,
     ], $options);
@@ -85,20 +85,49 @@ class ComponentTemplates
    * @param bool $noReload
    * @return string
    */
-  public function botCommandForm($command, $description, $inputPlaceHolder = 'username', $inputValue = null, $buttonText = 'Send Command', $disabled = false, $small = false, $noReload = false)
+  public function botCommandForm($command, $description, $inputPlaceHolder = '[username]', $inputValue = null, $buttonText = null, $disabled = false, $small = false, $noReload = false)
   {
-    $secondaryPlaceholder = '';
-    if ($inputValue !== null && $inputPlaceHolder != 'message') {
-      $secondaryPlaceholder = ' (' . $inputPlaceHolder . ')';
-    }
-    return '<form botcommand="' . $command . '" formnoreload=' . ($noReload ? '1' : '0') . '>
+    return '<form class="bot-command-form" botcommand="' . $command . '" formnoreload="' . ($noReload ? '1' : '0') . '"">
           <div class="form-group' . ($small ? ' form-group-sm' : '') . '">
-            <span>' . $description . $secondaryPlaceholder . '</span>
+            <span>' . $description . '</span>
             <div class="input-group">
               <input type="text" class="form-control" placeholder="' . $inputPlaceHolder . '" value="' . $inputValue . '"' . ($disabled ? ' disabled' : '') . '/>
               <span class="input-group-btn">
-                <button type="submit" class="btn btn-primary' . ($small ? ' btn-sm' : '') . '"' . ($disabled ? ' disabled' : '') . '>' . $buttonText . '</button>
+                <button type="submit" class="btn btn-primary' . ($small ? ' btn-sm' : '') . '"' . ($disabled ? ' disabled' : '') . '>' . ($buttonText ? $buttonText : '<span class="fa fa-paper-plane-o"></span>') . '</button>
               </span>
+            </div>
+          </div>
+        </form>';
+  }
+
+  /**
+   * @param $command
+   * @param $options
+   * @param $description
+   * @param null $textInputPlaceHolder
+   * @param null $textInputValue
+   * @param null $buttonText
+   * @param bool|false $small
+   * @param bool|false $noReload
+   * @return string
+   */
+  public function combinedBotCommandForm($command, $options, $description, $textInputPlaceHolder = null, $textInputValue = null, $buttonText = null, $small = false, $noReload = false)
+  {
+    $optionsString = '';
+    foreach ($options as $value => $option) {
+      $optionsString .= '<option value="' . $value . '">' . $option . '</option>';
+    }
+    return '<form class="combined-bot-command-form" botcommand="' . $command . '" formnoreload="' . ($noReload ? '1' : '0') . '">
+          <div class="form-group' . ($small ? ' form-group-sm' : '') . '">
+            <span>' .  $description . '</span>
+            <div class="input-group">
+              <div class="input-group-addon input-group-addon-select">
+                <select class="form-control" name="action">' . $optionsString . '</select>
+              </div>
+              <input type="text" class="form-control" name="actionarg" placeholder="' . $textInputPlaceHolder . '" value="' . $textInputValue . '" />
+            <span class="input-group-btn">
+              <button class="btn btn-primary">' . ($buttonText ? $buttonText : '<span class="fa fa-paper-plane-o"></span>') . '</button>
+            </span>
             </div>
           </div>
         </form>';
@@ -257,8 +286,8 @@ class ComponentTemplates
   /**
    * @param string $command
    * @param string $expression
-   * @param array $trueOption
-   * @param $falseOption
+   * @param string $trueOption
+   * @param string $falseOption
    * @return string
    */
   public function _wrapInJsToggledDoQuickCommand($command, $expression, $trueOption, $falseOption)

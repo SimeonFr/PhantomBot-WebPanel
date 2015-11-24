@@ -26,6 +26,7 @@ $functions = new Functions($config, $connection);
 $templates = new ComponentTemplates();
 
 $botSettings = $functions->getIniArray('settings');
+$theme = (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : '');
 
 ?>
 <script>
@@ -60,9 +61,14 @@ $botSettings = $functions->getIniArray('settings');
             <?= $templates->switchToggle('Whisper Mode', 'doQuickCommand', '[\'whispermode\']', '', (array_key_exists('whisper_mode', $botSettings) && $botSettings['whisper_mode'] == 'true')) ?>
           </div>
           <div class="spacer"></div>
+          <div class="btn-toolbar">
+            <?= $templates->switchToggle('Enable Event/Error Logging', $templates->_wrapInJsToggledDoQuickCommand('log', (array_key_exists('logenable', $botSettings) && $botSettings['logenable'] == '1' ? 'true' : 'false'), 'enable', 'disable'), '[]', '', (array_key_exists('logenable', $botSettings) && $botSettings['logenable'] == '1')) ?>
+            <?= $templates->switchToggle('Enable Chat Logging', $templates->_wrapInJsToggledDoQuickCommand('logchat', (array_key_exists('logchat', $botSettings) && $botSettings['logchat'] == '1' ? 'true' : 'false'), 'enable', 'disable'), '[]', '', (array_key_exists('logchat', $botSettings) && $botSettings['logchat'] == '1')) ?>
+          </div>
+          <div class="spacer"></div>
           <div class="row">
             <div class="col-sm-4">
-              <?= $templates->botCommandForm('log days', 'Set logging days', 'days', (array_key_exists('logrotatedays', $botSettings) ? $botSettings['logrotatedays'] : ''), 'Set') ?>
+              <?= $templates->botCommandForm('log days', 'Set log rotate days', 'days', (array_key_exists('logrotatedays', $botSettings) ? $botSettings['logrotatedays'] : ''), 'Set') ?>
             </div>
           </div>
         </div>
@@ -241,6 +247,35 @@ $botSettings = $functions->getIniArray('settings');
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <span>Default playlist file</span>
+
+            <div class="input-group">
+              <input type="text" class="form-control" id="setting-path-default-playlist"
+                     placeholder="<?= (array_key_exists('defaultYoutubePlaylist', $config->paths) ? $config->paths['defaultYoutubePlaylist'] : '') ?>"
+                     value="<?= (array_key_exists('defaultYoutubePlaylist', $config->paths) ? $config->paths['defaultYoutubePlaylist'] : '') ?>"/>
+              <span class="input-group-btn">
+                <button class="btn btn-primary"
+                        onclick="saveToConfig('paths/defaultYoutubePlaylist', 'setting-path-default-playlist', this)">
+                  Save
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<script>
+  (function () {
+    $('#theme-selector').submit(function (event) {
+      doBotRequest('saveToConfig', function () {
+        //location.replace('/');
+      }, {settingPath: 'paths/theme', setting: event.target[0].selectedOptions[0].value.trim()});
+      event.preventDefault();
+    });
+  })();
+</script>

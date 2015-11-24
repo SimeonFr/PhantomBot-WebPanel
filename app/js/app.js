@@ -140,16 +140,18 @@ function bindGlobalEventHandlers() {
       }
     }
   });
-
-  $('#music-player-divide-volume').on('change', function () {
-    pBotData.musicPlayerControls.volumeDivision = $(this).is(":checked");
-    pBotStorage.set(pBotStorage.keys.musicPlayer.volumeDivisionEnabled, pBotData.musicPlayerControls.volumeDivision);
-    setMusicPlayerVolume(pBotData.musicPlayerControls.volume, true);
+  $('#volume-control-slider').slider({
+    min: 0,
+    max: 100,
+    value: pBotData.musicPlayerControls.volume,
+    change: function (event, ui) {
+      doQuickCommand('volume ' + ui.value);
+    }
   });
 }
 
 function bindPartEventHandlers() {
-  $('form').off('submit').on('submit', function (event) {
+  $('form.bot-command-form').off('submit').on('submit', function (event) {
     var requestParams;
     if (!event.target.attributes.hasOwnProperty('botcommand')) {
       event.target.attributes.botcommand = {value: ''};
@@ -164,7 +166,6 @@ function bindPartEventHandlers() {
       }
       doBotRequest('command', function (result) {
         showGeneralAlert(result, 'success');
-        debug(noReload, event.target.attributes);
         if (noReload == '1') {
           input.val('');
         } else {
@@ -174,6 +175,34 @@ function bindPartEventHandlers() {
     } else {
       showGeneralAlert();
     }
+    event.preventDefault();
+  });
+
+  $('form.combined-bot-command-form').off('submit').on('submit', function (event) {
+    //noinspection JSUnresolvedVariable
+    var command = event.target.attributes.botcommand.value,
+        action = event.target[0].selectedOptions[0].value,
+        actionArg = event.target[1].value,
+        noReload = (event.target.attributes.formnoreload.value == '1'),
+        requestParams;
+
+    if (actionArg != '') {
+      requestParams = {command: (command != '' ? command + ' ' : '') + action + ' ' + actionArg};
+      doBotRequest('command', function (result) {
+        showGeneralAlert(result, 'success');
+        if (noReload) {
+          $(event.target[1]).val('');
+        } else {
+          loadPartFromStorage();
+        }
+      }, requestParams);
+    } else {
+      showGeneralAlert();
+    }
+
+
+
+    debug(command, action, actionArg);
     event.preventDefault();
   });
 
@@ -195,8 +224,6 @@ function bindPartEventHandlers() {
     }
     owner.toggleClass('open');
   });
-
-  $('#stream-preview').on('load', calculateStreamHeight);
 
   /*
    * Open previously opened collapsibles for current part
@@ -287,7 +314,6 @@ function getPanelConfig() {
         /* Apply UI Settings */
         toggleMusicPlayerControls(true, $('#player-controls-toggle'));
         toggleTooltips(true);
-        setMusicPlayerVolume(pBotData.musicPlayerControls.volume, true, true);
         toggleChat(true, $('#toggle-chat'));
         loadPartFromStorage();
 
@@ -411,34 +437,6 @@ function getBotStatus() {
       }
     },
   });
-}
-
-function setMusicPlayerVolume(addition, abs, fromLoad) {
-  var calculatedVolume, t;
-  if (abs) {
-    calculatedVolume = addition;
-  } else {
-    calculatedVolume = pBotData.musicPlayerControls.volume + addition;
-  }
-  if (calculatedVolume >= 0 && calculatedVolume <= 100) {
-    pBotData.musicPlayerControls.volume = calculatedVolume;
-    $('#music-player-volume').find('.value').css({
-      'background-position': 'center ' + pBotData.musicPlayerControls.volume + '%'
-    });
-    if (fromLoad && pBotStorage.get(pBotStorage.keys.musicPlayer.lastVolumeUpdate, 0) < (Date.now() + 864e5)) {
-      return;
-    }
-    t = setTimeout(function () {
-      pBotStorage.set(pBotStorage.keys.musicPlayer.lastVolumeUpdate, Date.now());
-      pBotStorage.set(pBotStorage.keys.musicPlayer.volume, pBotData.musicPlayerControls.volume);
-      if (pBotData.musicPlayerControls.volumeDivision) {
-        doQuickCommand('volume ' + pBotData.musicPlayerControls.volume / 10);
-      } else {
-        doQuickCommand('volume ' + pBotData.musicPlayerControls.volume);
-      }
-      clearTimeout(t);
-    }, 500);
-  }
 }
 
 function showGeneralAlert(message, severity) {
@@ -603,12 +601,15 @@ function updateMusicPlayerState() {
         titleElement.removeClass('long');
       }
     });
-
-    doBotRequest('getMusicPlayerPlaylist', function (result) {
-      $('#music-player-requests').html(result);
-    });
   }
 }
+
+function togglePlayPause() {
+  doBotRequest('command', function (result) {
+    showGeneralAlert(result, 'success');
+  }, {command: 'pause'});
+}
+
 function _repeat(string, count) {
   var str = '', i = 0;
   for (i; i < count; i++) {
