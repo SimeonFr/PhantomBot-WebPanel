@@ -51,8 +51,8 @@ foreach ($defaultPlaylist as $item) {
   }
   if (preg_match('/(.{1,11})\s[0-9]+\.\s(.*)/', $functions->cleanYTVideoTitle($item), $matches)) {
     $defaultPlaylistDataRows .= '<tr><td>' . ($defaultPlaylistLength + 1) . '.</td><td>' . trim($matches[2]) . '</td><td><div class="btn-toolbar">'
-        . $templates->botCommandButton('playsong ' . $matches[1], '<span class="fa fa-play"></span>', 'default btn-sm')
-        . $templates->botCommandButton('defaultdelsong ' . str_replace('https://youtube.com/watch?v=', '', $matches[1]), '<span class="fa fa-trash"></span>', 'default btn-sm')
+        . $templates->botCommandButton('playsong ' . $matches[1], '<span class="fa fa-play"></span>', 'success btn-sm')
+        . $templates->botCommandButton('defaultdelsong ' . str_replace('https://youtube.com/watch?v=', '', $matches[1]), '<span class="fa fa-trash"></span>', 'danger btn-sm')
         . $templates->botCommandButton('d !chat Youtube link for ' . $matches[2] . ' -> http://youtube.com/watch?v=' . $matches[1], 'Link In Chat', 'default btn-sm')
         . '</div></td></tr>';
     ++$defaultPlaylistLength;
