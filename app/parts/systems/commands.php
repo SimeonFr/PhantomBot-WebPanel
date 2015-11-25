@@ -84,6 +84,7 @@ foreach ($customCommandsIni as $command => $message) {
       . '<td class="price">' . $price . '</td>'
       . '<td>' . $perm . '</td>'
       . '<td>' . join('<br />', $commandAliases) . '</td>'
+      . '<td>' . $templates->botCommandButton('delcom ' . $command, '<span class="fa fa-trash"></span>', 'danger', 'Are you sure you want to delete !' . $command . '?') . '</td>'
       . '</tr>';
 }
 
@@ -147,7 +148,6 @@ foreach ($defaultCommands as $command) {
           <div class="col-sm-6">
             <?= $templates->botCommandForm('addcom', 'Add command', 'command message') ?>
             <?= $templates->botCommandForm('editcom', 'Modify command', 'command message') ?>
-            <?= $templates->botCommandForm('delcom', 'Delete command', 'command') ?>
           </div>
           <div class="col-sm-6">
             <div class="toggled-notice panel panel-default">

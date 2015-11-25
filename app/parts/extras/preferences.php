@@ -250,7 +250,7 @@ $theme = (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
-            <span>Default playlist file</span>
+            <span>Default playlist file <span class="text-muted(txt!)"></span></span>
 
             <div class="input-group">
               <input type="text" class="form-control" id="setting-path-default-playlist"
