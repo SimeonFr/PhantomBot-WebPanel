@@ -68,7 +68,7 @@ foreach ($points as $username => $amount) {
     </div>
     <div class="panel-body">
       <div class="btn-toolbar">
-        <?= $templates->switchToggle('Toggle Command permissions for Moderators', 'doQuickCommand', '[\'Toggle Point System\']',
+        <?= $templates->switchToggle('Toggle Command permissions for Moderators', 'doQuickCommand', '[\'points toggle\']',
             null, (array_key_exists('permTogglePoints', $botSettings) && filter_var($botSettings['permTogglePoints'], FILTER_VALIDATE_BOOLEAN))) ?>
       </div>
       <hr/>
