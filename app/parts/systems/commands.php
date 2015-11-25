@@ -146,8 +146,8 @@ foreach ($defaultCommands as $command) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-6">
-            <?= $templates->botCommandForm('addcom', 'Add command', 'command message') ?>
-            <?= $templates->botCommandForm('editcom', 'Modify command', 'command message') ?>
+            <?= $templates->botCommandForm('addcom', 'Add command', 'command [command message]') ?>
+            <?= $templates->botCommandForm('editcom', 'Modify command', 'command [command message]') ?>
           </div>
           <div class="col-sm-6">
             <div class="toggled-notice panel panel-default">
