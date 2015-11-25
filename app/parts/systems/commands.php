@@ -176,9 +176,9 @@ foreach ($defaultCommands as $command) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-6">
-            <?= $templates->botCommandForm('aliascom', 'Add alias', 'command alias') ?>
-            <?= $templates->botCommandForm('pricecom', 'Price', 'command amount') ?>
-            <?= $templates->botCommandForm('permcom', 'permission', 'command group mode') ?>
+            <?= $templates->botCommandForm('aliascom', 'Add alias', 'command [command alias]') ?>
+            <?= $templates->botCommandForm('pricecom', 'Price', 'command [command amount]') ?>
+            <?= $templates->botCommandForm('permcom', 'permission', 'command [group, group mode]' ?>
           </div>
           <div class="col-sm-6">
             <?= $templates->informationPanel('<p>!Permcom uses a "<b>mode</b>" system, which is for targeting what groups has access to the command.<br/>
