@@ -146,8 +146,8 @@ foreach ($defaultCommands as $command) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-6">
-            <?= $templates->botCommandForm('addcom', 'Add command', 'command message') ?>
-            <?= $templates->botCommandForm('editcom', 'Modify command', 'command message') ?>
+            <?= $templates->botCommandForm('addcom', 'Add command', 'command [command message]') ?>
+            <?= $templates->botCommandForm('editcom', 'Modify command', 'command [command message]') ?>
           </div>
           <div class="col-sm-6">
             <div class="toggled-notice panel panel-default">
@@ -176,9 +176,9 @@ foreach ($defaultCommands as $command) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-6">
-            <?= $templates->botCommandForm('aliascom', 'Add alias', 'command alias') ?>
-            <?= $templates->botCommandForm('pricecom', 'Price', 'command amount') ?>
-            <?= $templates->botCommandForm('permcom', 'permission', 'command group mode') ?>
+            <?= $templates->botCommandForm('aliascom', 'Add alias', 'command [command alias]') ?>
+            <?= $templates->botCommandForm('pricecom', 'Price', 'command [command amount]') ?>
+            <?= $templates->botCommandForm('permcom', 'permission', 'command [group, group mode]' ?>
           </div>
           <div class="col-sm-6">
             <?= $templates->informationPanel('<p>!Permcom uses a "<b>mode</b>" system, which is for targeting what groups has access to the command.<br/>
