@@ -63,7 +63,7 @@ foreach ($customCommandsIni as $command => $message) {
     $perm = 'Viewer';
   }
   if (preg_match('/\([0-9]\)|\([.]{3}\)/i', $message)) {
-    $actor = $templates->botCommandForm($command, '', '!' . $command, null, 'Send');
+    $actor = $templates->botCommandForm($command, '', '!' . $command, null, null, false, true);
   } else {
     $actor = $templates->botCommandButton($command, '!' . $command, 'default btn-sm btn-block');
   }
@@ -79,7 +79,7 @@ foreach ($customCommandsIni as $command => $message) {
   $customCommandsTableRows .= '<tr>'
       . $templates->addTooltip('<td class="command-actor">' . $actor . '</td>',
           '<span class="message ' . $msgClass . '">' . $message . '</span>',
-          ['position' => ComponentTemplates::TOOLTIP_POS_RIGHT, 'offsetY' => 17]
+          ['position' => ComponentTemplates::TOOLTIP_POS_RIGHT, 'offsetY' => (strlen($message) < 50 ? 17: (strlen($message) > 90 ? -17 : 0))]
       )
       . '<td class="price">' . $price . '</td>'
       . '<td>' . $perm . '</td>'
@@ -139,15 +139,15 @@ foreach ($defaultCommands as $command) {
       </h3>
     </div>
     <div class="panel-body">
-      <?= $templates->botCommandForm('', 'Run command', 'command [params]') ?>
+      <?= $templates->botCommandForm('', 'Run command', '[command] [params]') ?>
       <hr />
       <h4 class="collapsible-master">Command Creation</h4>
 
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-6">
-            <?= $templates->botCommandForm('addcom', 'Add command', 'command [command message]') ?>
-            <?= $templates->botCommandForm('editcom', 'Modify command', 'command [command message]') ?>
+            <?= $templates->botCommandForm('addcom', 'Add command', '[command] [message]') ?>
+            <?= $templates->botCommandForm('editcom', 'Modify command', '[command] [message]') ?>
           </div>
           <div class="col-sm-6">
             <div class="toggled-notice panel panel-default">
@@ -176,14 +176,14 @@ foreach ($defaultCommands as $command) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-6">
-            <?= $templates->botCommandForm('aliascom', 'Add alias', 'command [command alias]') ?>
-            <?= $templates->botCommandForm('pricecom', 'Price', 'command [command amount]') ?>
-            <?= $templates->botCommandForm('permcom', 'permission', 'command [group, group mode]' ?>
+            <?= $templates->botCommandForm('aliascom', 'Add alias', '[command] [alias]') ?>
+            <?= $templates->botCommandForm('pricecom', 'Price', '[command] [amount]') ?>
+            <?= $templates->botCommandForm('permcom', 'permission', '[command] [group] [mode]') ?>
           </div>
           <div class="col-sm-6">
             <?= $templates->informationPanel('<p>!Permcom uses a "<b>mode</b>" system, which is for targeting what groups has access to the command.<br/>
                 <ul>
-                  <li>1: Setting the mode as "<b>1</b>" will set the command to be accessible by <u>ONLY</u> the chosen
+                  <li>1: Setting the mode as "<b>1</b>" will set the command to be accessible by <cite>ONLY</cite> the chosen
                     group.
                   </li>
                   <li>2: Setting the mode as "<b>2</b>" will set the command to be accessible by the chosen group you and

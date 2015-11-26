@@ -52,10 +52,10 @@ $rollSettings = $functions->getIniArray('roll');
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('roll time', 'Set Roll Cool Down', 'seconds', (array_key_exists('roll_timer', $rollSettings) ? $rollSettings['roll_timer'] : '')) ?>
+            <?= $templates->botCommandForm('roll time', 'Set Roll Cool Down', '[seconds]', (array_key_exists('roll_timer', $rollSettings) ? $rollSettings['roll_timer'] : '30')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('roll bonus', 'Set Roll Doubles Multiplier', 'amount', (array_key_exists('roll_bonus', $rollSettings) ? $rollSettings['roll_bonus'] : '')) ?>
+            <?= $templates->botCommandForm('roll bonus', 'Set Roll Doubles Multiplier', '[amount]', (array_key_exists('roll_bonus', $rollSettings) ? $rollSettings['roll_bonus'] : '2')) ?>
           </div>
         </div>
       </div>

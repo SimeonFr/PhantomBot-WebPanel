@@ -49,8 +49,8 @@ foreach ($phrases as $emote => $reply) {
 
       <div class="row">
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('addphrase', 'Add reply', 'emote reply') ?>
-          <?= $templates->botCommandForm('delphrase', 'Delete reply', 'emote') ?>
+          <?= $templates->botCommandForm('addphrase', 'Add reply', '[emote] [reply]') ?>
+          <?= $templates->botCommandForm('delphrase', 'Delete reply', '[emote]') ?>
         </div>
         <div class="col-sm-4 col-sm-offset-4">
           <?= $templates->informationPanel('The bot can reply to words posted in the chat.<br/>"emote" equals to one word without spaces!') ?>

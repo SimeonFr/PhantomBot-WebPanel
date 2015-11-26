@@ -58,10 +58,10 @@ $urlWhiteList = $functions->getIniArray('whitelist');
       </div>
       <div class="row">
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('autopurge', 'Purge on phrase', 'phrase') ?>
+          <?= $templates->botCommandForm('autopurge', 'Purge on phrase', '[phrase]') ?>
         </div>
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('autoban', 'Ban on phrase', 'phrase') ?>
+          <?= $templates->botCommandForm('autoban', 'Ban on phrase', '[phrase]') ?>
         </div>
       </div>
       <hr/>
@@ -70,21 +70,21 @@ $urlWhiteList = $functions->getIniArray('whitelist');
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod warning1type', 'Warning #1 type', 'purge/ban',
+            <?= $templates->botCommandForm('chatmod warning1type', 'Warning #1 type', '[purge/ban]',
                 (array_key_exists('warning1type', $botSettings) ? $botSettings['warning1type'] : '')) ?>
-            <?= $templates->botCommandForm('chatmod warning1message', 'Warning #1 message', 'message',
+            <?= $templates->botCommandForm('chatmod warning1message', 'Warning #1 message', '[message]',
                 (array_key_exists('warning1message', $botSettings) ? $botSettings['warning1message'] : '')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod warning2type', 'Warning #2 type', 'purge/ban',
+            <?= $templates->botCommandForm('chatmod warning2type', 'Warning #2 type', '[purge/ban]',
                 (array_key_exists('warning2type', $botSettings) ? $botSettings['warning2type'] : '')) ?>
-            <?= $templates->botCommandForm('chatmod warning2message', 'Warning #2 message', 'message',
+            <?= $templates->botCommandForm('chatmod warning2message', 'Warning #2 message', '[message]',
                 (array_key_exists('warning2message', $botSettings) ? $botSettings['warning2message'] : '')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod warning3type', 'Warning #3 type', 'purge/ban',
+            <?= $templates->botCommandForm('chatmod warning3type', 'Warning #3 type', '[purge/ban]',
                 (array_key_exists('warning3type', $botSettings) ? $botSettings['warning3type'] : '')) ?>
-            <?= $templates->botCommandForm('chatmod warning3message', 'Warning #3 message', 'message',
+            <?= $templates->botCommandForm('chatmod warning3message', 'Warning #3 message', '[message]',
                 (array_key_exists('warning3message', $botSettings) ? $botSettings['warning3message'] : '')) ?>
           </div>
           </div>
@@ -155,13 +155,13 @@ $urlWhiteList = $functions->getIniArray('whitelist');
         <div class="spacer"></div>
         <div class="row">
           <div class="col-sm-8">
-            <?= $templates->botCommandForm('chatmod linksmessage', 'No link permission message', 'message',
+            <?= $templates->botCommandForm('chatmod linksmessage', 'No link permission message', '[message]',
                 (array_key_exists('linksmessage', $botSettings) ? $botSettings['linksmessage'] : '')) ?>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod permittime', 'Set Timout For Link Permit', 'seconds',
+            <?= $templates->botCommandForm('chatmod permittime', 'Set Timout For Link Permit', '[seconds]',
                 (array_key_exists('permittime', $botSettings) ? $botSettings['permittime'] : '')) ?>
           </div>
           <div class="col-sm-4">
@@ -189,17 +189,17 @@ $urlWhiteList = $functions->getIniArray('whitelist');
         </div>
         <div class="row">
           <div class="col-sm-8">
-            <?= $templates->botCommandForm('chatmod capsmessage', 'Too many caps message', 'message',
+            <?= $templates->botCommandForm('chatmod capsmessage', 'Too many caps message', '[message]',
                 (array_key_exists('capsmessage', $botSettings) ? $botSettings['capsmessage'] : '')) ?>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod capstriggerratio', 'Max caps ratio', 'ratio',
+            <?= $templates->botCommandForm('chatmod capstriggerratio', 'Max caps ratio', '[ratio]',
                 (array_key_exists('capstriggerratio', $botSettings) ? $botSettings['capstriggerratio'] : '')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod capstriggerlength', 'Max caps length', 'amount',
+            <?= $templates->botCommandForm('chatmod capstriggerlength', 'Max caps length', '[amount]',
                 (array_key_exists('capstriggerlength', $botSettings) ? $botSettings['capstriggerlength'] : '')) ?>
           </div>
         </div>
@@ -224,13 +224,13 @@ $urlWhiteList = $functions->getIniArray('whitelist');
         </div>
         <div class="row">
           <div class="col-sm-8">
-            <?= $templates->botCommandForm('chatmod spammessage', 'Spam message', 'message',
+            <?= $templates->botCommandForm('chatmod spammessage', 'Spam message', '[message]',
                 (array_key_exists('spammessage', $botSettings) ? $botSettings['spammessage'] : '')) ?>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod spamlimit', 'Spam limit', 'amount',
+            <?= $templates->botCommandForm('chatmod spamlimit', 'Spam limit', '[amount]',
                 (array_key_exists('spamlimit', $botSettings) ? $botSettings['spamlimit'] : '')) ?>
           </div>
         </div>
@@ -255,17 +255,17 @@ $urlWhiteList = $functions->getIniArray('whitelist');
         </div>
         <div class="row">
           <div class="col-sm-8">
-            <?= $templates->botCommandForm('chatmod symbolsmessage', 'Too many symbols message', 'message',
+            <?= $templates->botCommandForm('chatmod symbolsmessage', 'Too many symbols message', '[message]',
                 (array_key_exists('symbolsmessage', $botSettings) ? $botSettings['symbolsmessage'] : '')) ?>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod symbolslimit', 'Max symbols limit', 'amount',
+            <?= $templates->botCommandForm('chatmod symbolslimit', 'Max symbols limit', '[amount]',
                 (array_key_exists('symbolslimit', $botSettings) ? $botSettings['symbolslimit'] : '')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod symbolsrepeatlimit', 'Max symbols repeat limit', 'amount',
+            <?= $templates->botCommandForm('chatmod symbolsrepeatlimit', 'Max symbols repeat limit', '[amount]',
                 (array_key_exists('symbolsrepeatlimit', $botSettings) ? $botSettings['symbolsrepeatlimit'] : '')) ?>
           </div>
         </div>
@@ -290,13 +290,13 @@ $urlWhiteList = $functions->getIniArray('whitelist');
         </div>
         <div class="row">
           <div class="col-sm-8">
-            <?= $templates->botCommandForm('chatmod repeatmessage', 'Word repeat message', 'message',
+            <?= $templates->botCommandForm('chatmod repeatmessage', 'Word repeat message', '[message]',
                 (array_key_exists('repeatmessage', $botSettings) ? $botSettings['repeatmessage'] : '')) ?>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod repeatlimit', 'Word repeat limit', 'amount',
+            <?= $templates->botCommandForm('chatmod repeatlimit', 'Word repeat limit', '[amount]',
                 (array_key_exists('repeatlimit', $botSettings) ? $botSettings['repeatlimit'] : '')) ?>
           </div>
         </div>
@@ -321,13 +321,13 @@ $urlWhiteList = $functions->getIniArray('whitelist');
         </div>
         <div class="row">
           <div class="col-sm-8">
-            <?= $templates->botCommandForm('chatmod graphememessage', 'Too many graphemes message', 'message',
+            <?= $templates->botCommandForm('chatmod graphememessage', 'Too many graphemes message', '[message]',
                 (array_key_exists('graphememessage', $botSettings) ? $botSettings['graphememessage'] : '')) ?>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('chatmod graphemelimit', 'Grapheme limit', 'amount',
+            <?= $templates->botCommandForm('chatmod graphemelimit', 'Grapheme limit', '[amount]',
                 (array_key_exists('graphemelimit', $botSettings) ? $botSettings['graphemelimit'] : '')) ?>
           </div>
         </div>

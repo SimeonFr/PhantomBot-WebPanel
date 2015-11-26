@@ -78,7 +78,7 @@ foreach ($time as $username => $amount) {
             <?= $templates->botCommandForm('time', 'Check viewer time') ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('time set', 'Set viewer time', 'username seconds') ?>
+            <?= $templates->botCommandForm('time set', 'Set viewer time', '[username] [seconds]') ?>
           </div>
         </div>
       </div>

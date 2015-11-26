@@ -50,21 +50,21 @@ foreach ($notices as $nid => $message) {
         <div class="btn-toolbar">
           <div class="btn-group">
             <?= $templates->switchToggle('Toggle Notices', 'doQuickCommand', '[\'notice toggle\']',
-                null, (array_key_exists('notices_toggle', $noticeSettings) && filter_var($noticeSettings['notices_toggle'], FILTER_VALIDATE_BOOLEAN))) ?>
+                null, (array_key_exists('notices_toggle', $noticeSettings) ? filter_var($noticeSettings['notices_toggle'], FILTER_VALIDATE_BOOLEAN) : true)) ?>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-8">
-          <?= $templates->botCommandForm('addnotice', 'Add notice', 'message') ?>
+          <?= $templates->botCommandForm('addnotice', 'Add notice', '[message]') ?>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('delnotice', 'Delete notice', '#id') ?>
+          <?= $templates->botCommandForm('delnotice', 'Delete notice', '[#id]') ?>
         </div>
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('notice get', 'Announce Notice', '#id') ?>
+          <?= $templates->botCommandForm('notice get', 'Announce Notice', '[#id]') ?>
         </div>
       </div>
       <hr/>
@@ -73,8 +73,8 @@ foreach ($notices as $nid => $message) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('notice req', 'Message amount requirement', 'amount', $noticeSettings['reqmessages']) ?>
-            <?= $templates->botCommandForm('notice timer', 'Notice interval', 'minutes', $noticeSettings['interval']) ?>
+            <?= $templates->botCommandForm('notice req', 'Message amount requirement', '[amount]', (array_key_exists('reqmessages', $noticeSettings) ? $noticeSettings['reqmessages'] : '25')) ?>
+            <?= $templates->botCommandForm('notice timer', 'Notice interval', '[minutes]', (array_key_exists('interval', $noticeSettings) ? $noticeSettings['interval'] : '10')) ?>
           </div>
           <div class="col-sm-4 col-sm-offset-4">
             <?= $templates->informationPanel('<b>Message Requirement</b> is the amount of messages in chat that will trigger a notice.<br>

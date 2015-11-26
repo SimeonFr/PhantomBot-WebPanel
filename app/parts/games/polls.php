@@ -40,13 +40,13 @@ $templates = new ComponentTemplates();
 
       <div class="row">
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('poll open', 'Start a normal poll', 'option1 option2') ?>
+          <?= $templates->botCommandForm('poll open', 'Start a normal poll', '[option1] [option2]') ?>
           <div class="form-group">
             <?= $templates->botCommandButton('poll close', 'End Current Poll') ?>
           </div>
         </div>
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('poll open -t', 'Start a timed poll', 'seconds option1 option2') ?>
+          <?= $templates->botCommandForm('poll open -t', 'Start a timed poll', '[seconds] [option1] [option2]') ?>
         </div>
         <div class="col-sm-4">
           <?= $templates->informationPanel('To vote type <b>!vote "option"</b> in chat.')?>

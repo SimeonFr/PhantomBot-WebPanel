@@ -53,7 +53,7 @@ class Configuration
     // App version
     $this->version = @file_get_contents(BASEPATH . '/app/content/vars/current_version.txt');
     // Compatible PhantomBot version
-    $this->pBCompat = '1.6.4-stable';
+    $this->pBCompat = '1.6.5.1-stable';
   }
 
   /**

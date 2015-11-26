@@ -83,10 +83,10 @@ if ($marathonSettings) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('marathon name', 'Change marathon name', 'name') ?>
+            <?= $templates->botCommandForm('marathon name', 'Change marathon name', '[name]') ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('marathon link', 'Change marathon link', 'Url') ?>
+            <?= $templates->botCommandForm('marathon link', 'Change marathon link', '[url]') ?>
           </div>
         </div>
       </div>
@@ -96,7 +96,7 @@ if ($marathonSettings) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('marathon schedule add', 'Schedule marathon', 'name MM/DD HH:MM') ?>
+            <?= $templates->botCommandForm('marathon schedule add', 'Schedule marathon', '[name] [MM/DD] [HH:MM]') ?>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@ if ($marathonSettings) {
             <div class="form-group">
               <?= $templates->botCommandButton('timezone', 'Current Timezone') ?>
             </div>
-            <?= $templates->botCommandForm('timezone', 'Change bot timezone', 'timezone', (array_key_exists('timezone', $timezoneSettings) ? $timezoneSettings['timezone'] : '')) ?>
+            <?= $templates->botCommandForm('timezone', 'Change bot timezone', '[timezone]', (array_key_exists('timezone', $timezoneSettings) ? $timezoneSettings['timezone'] : '')) ?>
           </div>
           <div class="col-sm-4 col-sm-offset-4">
             <?= $templates->informationPanel('Marathon commands use the Time-Zone module that\'s included in the script in order to make up for timezone differences.') ?>

@@ -26,7 +26,6 @@ $botSettings = $functions->getIniArray('settings');
 $isBotOnline = ($connection->testConnection()[2] == 52);
 $hostHandlerActive = $functions->getIniValueByKey('modules.ini', 'hostHandler.js', true);
 $subscribeHandlerActive = $functions->getIniValueByKey('modules.ini', 'subscribeHandler.js', true);
-$latestFollower = array_key_exists('latestFollower', $config->paths);
 $musicPlayerCurrentSong = $functions->getOtherFile('/addons/youtubePlayer/currentsong.txt');
 $NOHosts = -1;
 $NOSubscribers = -1;
@@ -75,10 +74,6 @@ if ($subscribeHandlerActive == 1) {
   foreach ($subscribers as $subActive) {
     $NOSubscribers += ($subActive == 1 ? 1 : 0);
   }
-}
-
-if ($latestFollower) {
-  $latestFollower = $functions->getOtherFile($config->paths['latestFollower']);
 }
 ?>
 <!DOCTYPE html>
@@ -133,8 +128,7 @@ if ($latestFollower) {
         <?= str_repeat('<span class="pull-right info-banner-space-left">&nbsp;</span>', 3) ?>
         <?= $templates->streamInfoBanner($NOSubscribers, 'dollar', 'warning', 'Subscriber Count', '', ($NOSubscribers > -1)) ?>
         <?= $templates->streamInfoBanner($NOHosts, 'forward', 'info', 'Host Count', 'stream-hosts', ($NOHosts > -1)) ?>
-        <?= $templates->streamInfoBanner('NA', 'heartbeat', 'danger', 'Follower Count'
-            . ($latestFollower ? '<br />Latest: <span class="text-info">' . $latestFollower . '</span>' : ''), 'stream-followers') ?>
+        <?= $templates->streamInfoBanner('NA', 'heartbeat', 'danger', 'Follower Count', 'stream-followers') ?>
         <?= $templates->streamInfoBanner('NA', 'users', 'success', 'Viewer Count', 'stream-viewer-count') ?>
         <?= $templates->streamInfoBanner('Offline', 'rss', 'info', 'Stream Status', 'stream-status') ?>
         <?= (!$isBotOnline ? $templates->streamInfoBanner('Bot Offline', 'exclamation-circle', 'danger',

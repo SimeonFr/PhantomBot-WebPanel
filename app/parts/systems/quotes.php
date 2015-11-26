@@ -47,7 +47,7 @@ foreach ($quotes as $quoteId => $quoteMessage) {
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('quote', 'Summon quote', '#id') ?>
+          <?= $templates->botCommandForm('quote', 'Summon quote', '[#id]') ?>
         </div>
       </div>
       <hr/>
@@ -55,13 +55,13 @@ foreach ($quotes as $quoteId => $quoteMessage) {
 
       <div class="row">
         <div class="col-sm-8">
-          <?= $templates->botCommandForm('addquote', 'Add quote', 'message') ?>
+          <?= $templates->botCommandForm('addquote', 'Add quote', '[message]') ?>
         </div>
         <div class="col-sm-8">
-          <?= $templates->botCommandForm('editquote', 'Edit quote', '#id message') ?>
+          <?= $templates->botCommandForm('editquote', 'Edit quote', '#[id] [message]') ?>
         </div>
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('delquote', 'Delete quote', '#id') ?>
+          <?= $templates->botCommandForm('delquote', 'Delete quote', '[#id]') ?>
         </div>
       </div>
       <hr/>

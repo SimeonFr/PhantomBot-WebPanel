@@ -46,13 +46,13 @@ $botSettings = $functions->getIniArray('settings');
       <h4 class="collapsible-master">Hosts Settings</h4>
 
       <div class="collapsible-content">
-        <?= $templates->botCommandForm('hostmessage', 'Message on host', 'message', (array_key_exists('hostmessage', $botSettings) ? $botSettings['hostmessage'] : '')) ?>
+        <?= $templates->botCommandForm('hostmessage', 'Message on host', '[message]', (array_key_exists('hostmessage', $botSettings) ? $botSettings['hostmessage'] : '')) ?>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('hostreward', 'Points reward on host', 'amount', (array_key_exists('hostreward', $botSettings) ? $botSettings['hostreward'] : '')) ?>
+            <?= $templates->botCommandForm('hostreward', 'Points reward on host', '[amount]', (array_key_exists('hostreward', $botSettings) ? $botSettings['hostreward'] : '')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('hosttime', 'Host message cool down', 'minutes', (array_key_exists('hosttimeout', $botSettings) ? $botSettings['hosttimeout'] : '')) ?>
+            <?= $templates->botCommandForm('hosttime', 'Host message cool down', '[minutes]', (array_key_exists('hosttimeout', $botSettings) ? $botSettings['hosttimeout'] : '')) ?>
           </div>
         </div>
       </div>

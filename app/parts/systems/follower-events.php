@@ -32,7 +32,7 @@ $followersTableRows = '';
 
 foreach ($recordedFollows as $username => $follows) {
   if ($follows == '1') {
-    $followersTableRows .= '<tr><td>' . ucfirst($username) . '</td><td>' . (array_key_exists($username, $userLastSeen) ? $functions->botTimeToStandardFormat($userLastSeen[$username]) : '') . '</td></tr>';
+    $followersTableRows .= '<tr><td>' . ucfirst($username) . '</td><td>' . (array_key_exists($username, $userLastSeen) ? $functions->botTimeToStandardFormat($userLastSeen[$username]) : 'No data yet!') . '</td></tr>';
   }
 }
 
@@ -62,7 +62,7 @@ foreach ($recordedFollows as $username => $follows) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('followreward', 'Points reward on follow', 'amount', (array_key_exists('followreward', $botSettings) ? $botSettings['followreward'] : '')) ?>
+            <?= $templates->botCommandForm('followreward', 'Points reward on follow', '[amount]', (array_key_exists('followreward', $botSettings) ? $botSettings['followreward'] : '100')) ?>
           </div>
         </div>
       </div>

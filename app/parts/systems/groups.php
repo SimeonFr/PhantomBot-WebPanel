@@ -55,7 +55,7 @@ foreach ($viewerGroups as $username => $gid) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('group set', 'Set viewers group', 'username groupname') ?>
+            <?= $templates->botCommandForm('group set', 'Set viewers group', '[username] [groupname]') ?>
           </div>
           <div class="col-sm-4">
             <?= $templates->botCommandForm('group', 'Get group level') ?>
@@ -68,12 +68,12 @@ foreach ($viewerGroups as $username => $gid) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('group create', 'Create new group', 'groupname') ?>
-            <?= $templates->botCommandForm('group Remove', 'Delete group', 'groupname') ?>
+            <?= $templates->botCommandForm('group create', 'Create new group', '[groupname]') ?>
+            <?= $templates->botCommandForm('group Remove', 'Delete group', '[groupname]') ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('group name', 'Modify group name', 'groupname newname') ?>
-            <?= $templates->botCommandForm('group points', 'Modify group points multiplier', 'groupname amount') ?>
+            <?= $templates->botCommandForm('group name', 'Modify group name', '[groupname] [newname]') ?>
+            <?= $templates->botCommandForm('group points', 'Modify group points multiplier', '[groupname] [amount]') ?>
           </div>
         </div>
       </div>

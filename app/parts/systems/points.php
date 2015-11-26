@@ -69,7 +69,7 @@ foreach ($points as $username => $amount) {
     <div class="panel-body">
       <div class="btn-toolbar">
         <?= $templates->switchToggle('Toggle Command permissions for Moderators', 'doQuickCommand', '[\'points toggle\']',
-            null, (array_key_exists('permTogglePoints', $botSettings) && filter_var($botSettings['permTogglePoints'], FILTER_VALIDATE_BOOLEAN))) ?>
+            null, (array_key_exists('permTogglePoints', $botSettings) ? filter_var($botSettings['permTogglePoints'], FILTER_VALIDATE_BOOLEAN) : false)) ?>
       </div>
       <hr/>
       <h4 class="collapsible-master">Transactions</h4>
@@ -79,21 +79,21 @@ foreach ($points as $username => $amount) {
 
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points all', 'Send an amount of points to everyone', 'amount') ?>
+            <?= $templates->botCommandForm('points all', 'Send an amount of points to everyone', '[amount]') ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('letitrain', 'Divide an amount of points randomly over current viewers', 'amount') ?>
+            <?= $templates->botCommandForm('letitrain', 'Divide an amount of points randomly over current viewers', '[amount]') ?>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points add', 'Send an amount of points to viewer', 'username amount') ?>
+            <?= $templates->botCommandForm('points add', 'Send an amount of points to viewer', '[username] [amount]') ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points take', 'Take an amount of points from viewer', 'username amount') ?>
+            <?= $templates->botCommandForm('points take', 'Take an amount of points from viewer', '[username] [amount]') ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points set', 'set viewer points to amount', 'username amount') ?>
+            <?= $templates->botCommandForm('points set', 'set viewer points to amount', '[username] [amount]') ?>
           </div>
         </div>
       </div>
@@ -103,28 +103,31 @@ foreach ($points as $username => $amount) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points name single', 'Set points name (singular)', 'name', (array_key_exists('pointNameSingle', $botSettings) ? $botSettings['pointNameSingle'] : '')) ?>
+            <?= $templates->botCommandForm('points name single', 'Set points name (singular)', 'name', (array_key_exists('pointNameSingle', $botSettings) ? $botSettings['pointNameSingle'] : 'point')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points name multiple', 'Set points name (plural)', 'name', (array_key_exists('pointNameMultiple', $botSettings) ? $botSettings['pointNameMultiple'] : '')) ?>
+            <?= $templates->botCommandForm('points name multiple', 'Set points name (plural)', 'name', (array_key_exists('pointNameMultiple', $botSettings) ? $botSettings['pointNameMultiple'] : 'points')) ?>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <?= $templates->botCommandForm('points gain', 'Points gained per interval <span class="text-success">(Online)</span>', '[amount]', (array_key_exists('pointGain', $botSettings) ? $botSettings['pointGain'] : '1')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points gain', 'Points gained per interval <span class="text-success">(Online)</span>', 'amount', (array_key_exists('pointGain', $botSettings) ? $botSettings['pointGain'] : '')) ?>
+            <?= $templates->botCommandForm('points interval', 'Point gain interval <span class="text-success">(Online)</span>', '[minutes]', (array_key_exists('pointInterval', $botSettings) ? $botSettings['pointInterval'] : '10')) ?>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <?= $templates->botCommandForm('points offlinegain', 'Points gained per interval <span class="text-danger">(Offline)</span>', '[amount]', (array_key_exists('pointGainOffline', $botSettings) ? $botSettings['pointGainOffline'] : '1')) ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points offlinegain', 'Points gained per interval <span class="text-danger">(Offline)</span>', 'amount', (array_key_exists('pointGainOffline', $botSettings) ? $botSettings['pointGainOffline'] : '')) ?>
+            <?= $templates->botCommandForm('points offlineinterval', 'Point gain interval <span class="text-danger">(Offline)</span>', '[minutes]', (array_key_exists('pointIntervalOffline', $botSettings) ? $botSettings['pointIntervalOffline'] : '10')) ?>
           </div>
+        </div>
+        <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('points bonus', 'Bonus per group level', 'amount', (array_key_exists('pointBonus', $botSettings) ? $botSettings['pointBonus'] : '')) ?>
-          </div>
-          <div class="col-sm-4">
-            <?= $templates->botCommandForm('points interval', 'Point gain interval <span class="text-success">(Online)</span>', 'minuted', (array_key_exists('pointInterval', $botSettings) ? $botSettings['pointInterval'] : '')) ?>
-          </div>
-          <div class="col-sm-4">
-            <?= $templates->botCommandForm('points offlineinterval', 'Point gain interval <span class="text-danger">(Offline)</span>', 'minutes', (array_key_exists('pointIntervalOffline', $botSettings) ? $botSettings['pointIntervalOffline'] : '')) ?>
-          </div>
-          <div class="col-sm-4">
-            <?= $templates->botCommandForm('points mingift', 'Minimal gift', 'amount', (array_key_exists('pointGiftMin', $botSettings) ? $botSettings['pointGiftMin'] : '')) ?>
+            <?= $templates->botCommandForm('points mingift', 'Minimal gift', '[amount]', (array_key_exists('pointGiftMin', $botSettings) ? $botSettings['pointGiftMin'] : '10')) ?>
           </div>
         </div>
       </div>
@@ -132,33 +135,33 @@ foreach ($points as $username => $amount) {
       <?= $templates->dataTable('Viewer Points (' . count($points) . ')', ['Username', 'Amount'], $pointsTableRows, true, '', [
           [
               'display' => 'Sort Username a-z',
-              'name'    => 'username',
-              'value'   => 'ASC',
-              'active'  => (array_key_exists('username', $filter) && $filter['username'] == 'ASC'),
+              'name' => 'username',
+              'value' => 'ASC',
+              'active' => (array_key_exists('username', $filter) && $filter['username'] == 'ASC'),
           ],
           [
               'display' => 'Sort Username z-a',
-              'name'    => 'username',
-              'value'   => 'DESC',
-              'active'  => (array_key_exists('username', $filter) && $filter['username'] == 'DESC'),
+              'name' => 'username',
+              'value' => 'DESC',
+              'active' => (array_key_exists('username', $filter) && $filter['username'] == 'DESC'),
           ],
           [
               'display' => 'Sort ' . ucfirst(array_key_exists('pointNameMultiple', $botSettings) ? $botSettings['pointNameMultiple'] : 'points') . ' Ascending',
-              'name'    => 'points',
-              'value'   => 'ASC',
-              'active'  => (array_key_exists('points', $filter) && $filter['points'] == 'ASC'),
+              'name' => 'points',
+              'value' => 'ASC',
+              'active' => (array_key_exists('points', $filter) && $filter['points'] == 'ASC'),
           ],
           [
               'display' => 'Sort ' . ucfirst(array_key_exists('pointNameMultiple', $botSettings) ? $botSettings['pointNameMultiple'] : 'points') . ' Descending',
-              'name'    => 'points',
-              'value'   => 'DESC',
-              'active'  => (array_key_exists('points', $filter) && $filter['points'] == 'DESC'),
+              'name' => 'points',
+              'value' => 'DESC',
+              'active' => (array_key_exists('points', $filter) && $filter['points'] == 'DESC'),
           ],
           [
               'display' => 'Show > 1500' . ucfirst(array_key_exists('pointNameMultiple', $botSettings) ? $botSettings['pointNameMultiple'] : 'points'),
-              'name'    => 'points',
-              'value'   => 'MAX',
-              'active'  => (array_key_exists('points', $filter) && $filter['points'] == 'MAX'),
+              'name' => 'points',
+              'value' => 'MAX',
+              'active' => (array_key_exists('points', $filter) && $filter['points'] == 'MAX'),
           ],
       ]) ?>
     </div>

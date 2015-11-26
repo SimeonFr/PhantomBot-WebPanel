@@ -61,12 +61,12 @@ foreach ($subscribers as $username => $subscribed) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('subscribemessage', 'Message on subscription', 'message', (array_key_exists('subscribemessage', $botSettings) ? $botSettings['subscribemessage'] : '')) ?>
+            <?= $templates->botCommandForm('subscribemessage', 'Message on subscription', '[message]', (array_key_exists('subscribemessage', $botSettings) ? $botSettings['subscribemessage'] : 'Thanks for the subscription (name)!')) ?>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('subscribereward', 'Points reward on subscription', 'amount', (array_key_exists('subscribereward', $botSettings) ? $botSettings : '')) ?>
+            <?= $templates->botCommandForm('subscribereward', 'Points reward on subscription', '[amount]', (array_key_exists('subscribereward', $botSettings) ? $botSettings : '1000')) ?>
           </div>
         </div>
       </div>

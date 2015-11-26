@@ -38,7 +38,7 @@ $templates = new ComponentTemplates();
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('!bid start', 'Start a new bid', 'amount increment_amount') ?>
+          <?= $templates->botCommandForm('!bid start', 'Start a new bid', '[amount] [increment amount]') ?>
         </div>
         <div class="col-sm-8">
           <div class="spacer"></div>

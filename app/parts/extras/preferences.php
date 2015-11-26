@@ -68,7 +68,7 @@ $theme = (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 
           <div class="spacer"></div>
           <div class="row">
             <div class="col-sm-4">
-              <?= $templates->botCommandForm('log days', 'Set log rotate days', 'days', (array_key_exists('logrotatedays', $botSettings) ? $botSettings['logrotatedays'] : ''), 'Set') ?>
+              <?= $templates->botCommandForm('log days', 'Set log rotate days', '[days]', (array_key_exists('logrotatedays', $botSettings) ? $botSettings['logrotatedays'] : '7'), 'Set') ?>
             </div>
           </div>
         </div>

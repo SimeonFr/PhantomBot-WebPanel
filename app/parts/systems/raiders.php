@@ -31,13 +31,13 @@ $pastRaidersTableRows = '';
 $doRaidCommandResponse = $functions->getIniValueByKey('command', 'doraid');
 $firstTime = false;
 $addCommandJsActive = $functions->getModuleStatus('addCommand.js');
-$doRaidCommandForm = $templates->botCommandForm('doraid', 'Raid target', 'username');
+$doRaidCommandForm = $templates->botCommandForm('doraid', 'Raid target', '[username]');
 
 if ($addCommandJsActive == 1 && $doRaidCommandResponse == '0') {
   $connection->send('!addcom doraid Let\'s raid (1)! Go to http://twitch.tv/(1) and say "' . $config->channelOwner . ' Raid!", throw them a follow and show the love! <3');
   $firstTime = true;
 } elseif ($addCommandJsActive == '0') {
-  $doRaidCommandForm = $templates->addTooltip($templates->botCommandForm('doraid', 'Raid target', 'username', null, 'Send', true),
+  $doRaidCommandForm = $templates->addTooltip($templates->botCommandForm('doraid', 'Raid target', '[username]', null, 'Send', true),
       'Enable the addCommand.js module to use this form.' . $templates->botCommandButton('!module enable ./commands/addCommand.js', 'Enable addCommand.js Now', 'primary btn-block'));
 }
 

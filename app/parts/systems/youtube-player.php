@@ -40,7 +40,7 @@ foreach ($requestQueue as $item) {
     $requestQueueDataRows .= '<tr><td>' . ($requestQueueLength + 1) . '.</td><td>' . $matches[1] . '</td><td>' . $matches[2] . '</td></tr>';
     ++$requestQueueLength;
   } else {
-    $requestQueueDataRows .= '<tr><td colspan="2">Could not parse the song queue. Make sure the file location is correct in Extras->Preferences</td></tr>';
+    $requestQueueDataRows .= '<tr><td colspan="2">Could not parse the song queue. Make sure the file location is correct in Extras->Preferences.</td></tr>';
     break;
   }
 }
@@ -57,7 +57,7 @@ foreach ($defaultPlaylist as $item) {
         . '</div></td></tr>';
     ++$defaultPlaylistLength;
   } else {
-    $defaultPlaylistDataRows .= '<tr><td colspan="3">Could not parse the default Playlist. Make sure the file location is correct in Extras->Preferences</td></tr>';
+    $defaultPlaylistDataRows .= '<tr><td colspan="3">Could not parse the default Playlist. Make sure the file location is correct in Extras->Preferences and the playlist has been parsed by the bot.</td></tr>';
     break;
   }
 }
@@ -68,6 +68,7 @@ foreach ($defaultPlaylist as $item) {
     <div class="panel-heading">
       <h3 class="panel-title">
         Youtube Player Settings
+        <?= $templates->toggleFavoriteButton() ?>
         <?= $templates->moduleActiveIndicator($functions->getModuleStatus('./addonscripts/youtubePlayer.js')) ?>
       </h3>
     </div>
@@ -84,20 +85,20 @@ foreach ($defaultPlaylist as $item) {
       <div class="collapsible-content">
         <div class="row">
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('musicplayer limit', 'Request Limit per viewer', 'amount', (array_key_exists('song_limit', $botSettings) ? $botSettings['song_limit'] : ''), 'Limit') ?>
+            <?= $templates->botCommandForm('musicplayer limit', 'Request Limit per viewer', '[amount]', (array_key_exists('song_limit', $botSettings) ? $botSettings['song_limit'] : ''), 'Limit') ?>
           </div>
           <div class="col-sm-4">
-            <?= $templates->botCommandForm('pricecom addsong', '!addsong price', 'amount', $functions->getIniValueByKey('pricecom', 'addsong'), 'Set') ?>
+            <?= $templates->botCommandForm('pricecom addsong', '!addsong price', '[amount]', $functions->getIniValueByKey('pricecom', 'addsong'), 'Set') ?>
           </div>
         </div>
       </div>
       <hr/>
       <div class="row">
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('addsong', 'Add song to the queue', 'link', null, 'Add') ?>
+          <?= $templates->botCommandForm('addsong', 'Add song to the queue', '[youtube url]', null, 'Add') ?>
         </div>
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('delsong', 'Remove song from queue', 'link', null, 'Del') ?>
+          <?= $templates->botCommandForm('delsong', 'Remove song from queue', '[youtube url]', null, 'Del') ?>
         </div>
       </div>
       <?= $templates->dataTable('Request Queue <small>(' . $requestQueueLength . ' items)</small>', ['', 'Video Title', 'Requested By'], $requestQueueDataRows, true) ?>
