@@ -204,6 +204,7 @@ function getGroupId($group)
             <?= $templates->botCommandForm('coolcom', 'Add cooldown', '[command] [cooldown]') ?>
             <?= $templates->botCommandForm('pricecom', 'Price', '[command] [amount]') ?>
             <?= $templates->botCommandForm('permcom', 'permission', '[command] [group] [mode]') ?>
+            <?= $templates->botCommandForm('rewardcom', 'Reward', '[command] [amount]') ?>
           </div>
           <div class="col-sm-6">
             <?= $templates->informationPanel('<p>!Permcom uses a "<b>mode</b>" system, which is for targeting what groups has access to the command.<br/>

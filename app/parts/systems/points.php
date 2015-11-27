@@ -29,6 +29,8 @@ $filter = filter_input_array(INPUT_POST);
 $botSettings = $functions->getIniArray('settings');
 $points = $functions->getIniArray('points');
 $pointsTableRows = '';
+$totalPoints = 0;
+$pointsName = ' ' . (array_key_exists('pointNameMultiple', $botSettings) ? $botSettings['pointNameMultiple'] : 'points');
 
 if (!is_array($filter)) {
   $filter = [];
@@ -54,7 +56,9 @@ if (array_key_exists('username', $filter)) {
 
 
 foreach ($points as $username => $amount) {
+  $amount = intval($amount);
   $pointsTableRows .= '<tr><td>' . ucfirst($username) . '</td><td>' . $amount . '</td></tr>';
+  $totalPoints += $amount;
 }
 ?>
 <div class="app-part">
@@ -67,10 +71,11 @@ foreach ($points as $username => $amount) {
       </h3>
     </div>
     <div class="panel-body">
-      <div class="btn-toolbar">
-        <?= $templates->switchToggle('Toggle Command permissions for Moderators', 'doQuickCommand', '[\'points toggle\']',
-            null, (array_key_exists('permTogglePoints', $botSettings) ? filter_var($botSettings['permTogglePoints'], FILTER_VALIDATE_BOOLEAN) : false)) ?>
-      </div>
+      <h4>Currency Statistics</h4>
+      <h4>
+        <small>Current Total:</small> <?= number_format($totalPoints) . $pointsName ?></h4>
+      <h4>
+        <small>Current Average:</small> <?= number_format(round($totalPoints / count($points))) . $pointsName ?></h4>
       <hr/>
       <h4 class="collapsible-master">Transactions</h4>
 
@@ -101,6 +106,10 @@ foreach ($points as $username => $amount) {
       <h4 class="collapsible-master">Currency Control</h4>
 
       <div class="collapsible-content">
+        <div class="btn-toolbar">
+          <?= $templates->switchToggle('Toggle Command permissions for Moderators', 'doQuickCommand', '[\'points toggle\']',
+              null, (array_key_exists('permTogglePoints', $botSettings) ? filter_var($botSettings['permTogglePoints'], FILTER_VALIDATE_BOOLEAN) : false)) ?>
+        </div>
         <div class="row">
           <div class="col-sm-4">
             <?= $templates->botCommandForm('points name single', 'Set points name (singular)', 'name', (array_key_exists('pointNameSingle', $botSettings) ? $botSettings['pointNameSingle'] : 'point')) ?>
