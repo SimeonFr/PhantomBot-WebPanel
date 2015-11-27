@@ -110,6 +110,7 @@ foreach ($points as $username => $amount) {
           <?= $templates->switchToggle('Toggle Command permissions for Moderators', 'doQuickCommand', '[\'points toggle\']',
               null, (array_key_exists('permTogglePoints', $botSettings) ? filter_var($botSettings['permTogglePoints'], FILTER_VALIDATE_BOOLEAN) : false)) ?>
         </div>
+        <div class="spacer"></div>
         <div class="row">
           <div class="col-sm-4">
             <?= $templates->botCommandForm('points name single', 'Set points name (singular)', 'name', (array_key_exists('pointNameSingle', $botSettings) ? $botSettings['pointNameSingle'] : 'point')) ?>
