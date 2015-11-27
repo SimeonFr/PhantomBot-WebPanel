@@ -157,7 +157,6 @@ foreach ($defaultCommands as $command) {
               <div class="panel-body">
                 <ul>
                   <li>(sender) - displays the user of the command</li>
-                  <li>(titledsender) - displays the user of the command + rank</li>
                   <li>(count) - displays the amount of times the command has been used</li>
                   <li>(random) - chooses a random person in the channel</li>
                   <li>(code) - generates a 8 character code using A-Z and 1-9</li>
