@@ -53,7 +53,7 @@ foreach ($greetingSettings as $username => $greeting) {
 
       <div class="row">
         <div class="col-sm-6">
-          <?= $templates->botCommandForm('greeting setdefault', 'Set global greeting message', '[message]', (array_key_exists('_default', $greetingSettings) ? $greetingSettings['_default'] : '')) ?>
+          <?= $templates->botCommandForm('greeting set default', 'Set global greeting message', '[message]', (array_key_exists('_default', $greetingSettings) ? $greetingSettings['_default'] : '')) ?>
         </div>
         <div class="col-sm-4 col-sm-offset-2">
           <?= $templates->informationPanel('Users can set their own greeting using "!greeting set &lt;message&gt;". Then enable/disable the greeting by using "!greeting &lt;enable/disable&gt;".') ?>
