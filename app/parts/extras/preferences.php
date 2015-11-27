@@ -51,7 +51,23 @@ $theme = (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 
         <?= $templates->switchToggle('Show Chat By Default', 'toggleChatDefaultState', '[false]', 'toggle-chat-default-button') ?>
       </div>
       <div class="spacer"></div>
-      <div class="-align-right"></div>
+      <div class="row">
+        <div class="col-xs-4">
+          <form id="theme-selector">
+            <span>UI Theme</span>
+            <div class="input-group">
+              <select class="form-control">
+                <option value="style_dark">Dark</option>
+                <option value="style_light">Light</option>
+              </select>
+
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-primary"><span class="fa fa-check"></span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
       <hr/>
       <h4>Misc PhantomBot Settings</h4>
 
@@ -273,11 +289,13 @@ $theme = (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 
 </div>
 <script>
   (function () {
-    $('#theme-selector').submit(function (event) {
-      doBotRequest('saveToConfig', function () {
-        //location.replace('/');
-      }, {settingPath: 'paths/theme', setting: event.target[0].selectedOptions[0].value.trim()});
-      event.preventDefault();
-    });
+    $('#theme-selector')
+        .submit(function (event) {
+          doBotRequest('saveToConfig', function () {
+            location.replace('/');
+          }, {settingPath: 'paths/theme', setting: event.target[0].selectedOptions[0].value.trim()});
+          event.preventDefault();
+        })
+        .find('option').filter('[value=<?= (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 'style_dark') ?>]').attr('selected', true);
   })();
 </script>

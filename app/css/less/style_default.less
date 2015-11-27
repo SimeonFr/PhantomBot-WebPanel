@@ -112,13 +112,14 @@ a {
   bottom: 0;
   width: 100%;
   transition: height .3s ease-in-out;
-  background-color: fade(@gray-dark, 90%);
+  background-color: fade(@music-controls-bg, 90%);
   border-top: 1px solid @gray-light;
   > div {
     position: relative;
     float: left;
     border-radius: @border-radius-base;
     margin: 2px 6px;
+    color: #fff;
   }
   .spacer {
     display: inline-block;
@@ -191,6 +192,7 @@ a {
     overflow: hidden;
     white-space: nowrap;
     background-color: @gray-darker;
+    color: #ffffff;
     &.long {
       .text {
         animation: scroll-text 10s linear;
@@ -329,6 +331,7 @@ a {
   transform: scale(.3);
   transition: transform .5s ease-in-out;
   pointer-events: none;
+  color: #fff;
   &.no-transition {
     transition: none;
   }

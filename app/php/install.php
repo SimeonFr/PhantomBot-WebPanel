@@ -42,7 +42,7 @@ function saveError()
 <head lang="en">
   <meta charset="UTF-8">
   <title></title>
-  <link href="../css/style_dark.css" rel="stylesheet" type="text/css"/>
+  <link href="../css/<?= (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 'style_dark') ?>.css" rel="stylesheet" type="text/css"/>
   <script src="/app/js/jquery-1.11.3.min.js" type="text/javascript"></script>
   <script src="/app/js/spark-md5.min.js" type="text/javascript"></script>
   <script src="/app/js/install.min.js" type="text/javascript"></script>

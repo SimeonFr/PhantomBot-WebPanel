@@ -81,7 +81,7 @@ if ($subscribeHandlerActive == 1) {
 <head lang="en">
   <meta charset="UTF-8">
   <title></title>
-  <link href="app/css/style_dark.css" rel="stylesheet" type="text/css"/>
+  <link href="app/css/<?= (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 'style_dark') ?>.css" rel="stylesheet" type="text/css"/>
   <link href="app/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
@@ -98,7 +98,7 @@ if ($subscribeHandlerActive == 1) {
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" nohref>
-          <img alt="PhantomBot Web Panel" src="app/content/static/logo-small.png"/>
+          <img alt="PhantomBot Web Panel" src="app/content/static/logo-small.png" role="button" onclick="loadPartFromStorage()" />
           <span class="panel-version text-muted">version <?= $config->version ?></span>
         </a>
       </div>
