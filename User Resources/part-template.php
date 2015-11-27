@@ -32,11 +32,12 @@ $botSettings = $functions->getIniArray('settings');
     <div class="panel-heading">
       <h3 class="panel-title">
         MODULE NAME
+        <?= $templates->toggleFavoriteButton() ?>
         <?= $templates->moduleActiveIndicator($functions->getModuleStatus('MODULE SCRIPT NAME')) ?>
       </h3>
     </div>
     <div class="panel-body">
-
+      PAGE CONTENT
     </div>
   </div>
 </div>
