@@ -26,7 +26,7 @@ class Configuration
     $this->configFileName = realpath(dirname(__FILE__)) . '/../../../app/content/vars/config.php';
     if (!$isInstall) {
       if (!file_exists($this->configFileName)) {
-        header('Location: install.php');
+        header('Location: app/php/install.php');
       }
       $configFileContent = @file_get_contents($this->configFileName);
       if ($configFileContent) {
