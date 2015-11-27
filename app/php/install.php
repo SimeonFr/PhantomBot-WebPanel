@@ -152,10 +152,10 @@ function saveError()
     <div class="panel-body text-muted">
       PhantomBot Control Panel
       <small><?=$config->version?></small>
-      Developed by <a href="//juraji.nl" target="_blank">juraji</a> &copy;<?=date('Y')?><br/>
+      Developed by <a href="//juraji.nl" target="_blank">Juraji</a> &copy;<?=date('Y')?><br/>
       Compatible with <a href="//www.phantombot.net/" target="_blank">PhantomBot <?=$config->pBCompat?></a>,
-      developed by <a href="//phantombot.net/members/phantomindex.1/" target="_blank">phantomindex</a>,
-      <a href="//phantombot.net/members/gloriouseggroll.2/" target="_blank">gloriouseggroll</a> &amp;
+      developed by <a href="//phantombot.net/members/phantomindex.1/" target="_blank">PhantomIndex</a>,
+      <a href="//phantombot.net/members/gloriouseggroll.2/" target="_blank">GloriousEggroll</a> &amp;
       <a href="//phantombot.net/members/gmt2001.28/" target="_blank">gmt2001</a>.
     </div>
   </div>
