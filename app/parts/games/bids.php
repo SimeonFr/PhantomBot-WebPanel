@@ -27,7 +27,7 @@ $templates = new ComponentTemplates();
 
 ?>
 <div class="app-part">
-    <div class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
         Bidding System

@@ -55,6 +55,7 @@ $theme = (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 
         <div class="col-xs-4">
           <form id="theme-selector">
             <span>UI Theme</span>
+
             <div class="input-group">
               <select class="form-control">
                 <option value="style_dark">Dark</option>

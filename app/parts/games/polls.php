@@ -27,7 +27,7 @@ $templates = new ComponentTemplates();
 
 ?>
 <div class="app-part">
-    <div class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
         Poll System
@@ -49,7 +49,7 @@ $templates = new ComponentTemplates();
           <?= $templates->botCommandForm('poll open -t', 'Start a timed poll', '[seconds] [option1] [option2]') ?>
         </div>
         <div class="col-sm-4">
-          <?= $templates->informationPanel('To vote type <b>!vote "option"</b> in chat.')?>
+          <?= $templates->informationPanel('To vote type <b>!vote "option"</b> in chat.') ?>
         </div>
       </div>
       <hr/>

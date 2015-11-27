@@ -27,7 +27,7 @@ $templates = new ComponentTemplates();
 
 ?>
 <div class="app-part">
-    <div class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
         Bet System
@@ -65,7 +65,7 @@ $templates = new ComponentTemplates();
           <?= $templates->botCommandForm('bet win', 'Select winner', '[option]') ?>
         </div>
         <div class="col-sm-4 col-sm-offset-4">
-          <?= $templates->informationPanel('Have a viewer decide who wins by having them use "!bet win &lt;option&gt;".')?>
+          <?= $templates->informationPanel('Have a viewer decide who wins by having them use "!bet win &lt;option&gt;".') ?>
         </div>
       </div>
     </div>

@@ -204,7 +204,7 @@ class Functions
           return $iniValue;
         }
       }
-      return '0';
+      return '';
     } else {
       return ($ini && array_key_exists($key, $ini) ? $ini[$key] : '0');
     }

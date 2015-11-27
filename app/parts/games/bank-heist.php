@@ -43,7 +43,7 @@ $bankHeistChances = $functions->getIniArray('bankheist_chances', true);
     <div class="panel-body">
       <div class="btn-toolbar">
         <?= $templates->botCommandButton('bankheist start', 'Start Bank Heist') ?>
-        <?=$templates->switchToggle('Toggle Bankheist', 'doQuickCommand', '[\'bankheist toggle\']', '', (array_key_exists('bankheistToggle', $botSettings) ? filter_var($botSettings['bankheistToggle'], FILTER_VALIDATE_BOOLEAN) : false))?>
+        <?= $templates->switchToggle('Toggle Bankheist', 'doQuickCommand', '[\'bankheist toggle\']', '', (array_key_exists('bankheistToggle', $botSettings) ? filter_var($botSettings['bankheistToggle'], FILTER_VALIDATE_BOOLEAN) : false)) ?>
       </div>
       <hr/>
       <h4 class="collapsible-master">Session Settings</h4>

@@ -28,7 +28,7 @@ $botSettings = $functions->getIniArray('settings');
 
 ?>
 <div class="app-part">
-    <div class="panel panel-default">
+  <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
         Donations
@@ -40,16 +40,16 @@ $botSettings = $functions->getIniArray('settings');
       <h4>Donation Event Settings</h4>
 
       <div class="btn-toolbar">
-        <?=$templates->switchToggle('Enable Donation Alerts', 'doQuickCommand', '[\'donationalert toggle\']', '', (array_key_exists('donation_toggle', $botSettings) && $botSettings['donation_toggle'] == '1'))?>
+        <?= $templates->switchToggle('Enable Donation Alerts', 'doQuickCommand', '[\'donationalert toggle\']', '', (array_key_exists('donation_toggle', $botSettings) && $botSettings['donation_toggle'] == '1')) ?>
       </div>
       <div class="spacer"></div>
       <div class="row">
         <div class="col-sm-4">
-          <?=$templates->botCommandForm('donationalert filepath', 'Donations File', '[filepath]', (array_key_exists('checker_storepath', $botSettings) ? $botSettings['checker_storepath'] : ''))?>
+          <?= $templates->botCommandForm('donationalert filepath', 'Donations File', '[filepath]', (array_key_exists('checker_storepath', $botSettings) ? $botSettings['checker_storepath'] : '')) ?>
         </div>
         <div class="col-sm-4">&nbsp;</div>
         <div class="col-sm-4">
-          <?=$templates->informationPanel('Set a new file path for the donation text file.<br />This is useful when you have another program that produces an output file, you can point the bot towards it and have it send a message to the chat when there are changes.')?>
+          <?= $templates->informationPanel('Set a new file path for the donation text file.<br />This is useful when you have another program that produces an output file, you can point the bot towards it and have it send a message to the chat when there are changes.') ?>
         </div>
       </div>
     </div>

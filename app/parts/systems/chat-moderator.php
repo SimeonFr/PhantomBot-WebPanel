@@ -87,7 +87,7 @@ $urlWhiteList = $functions->getIniArray('whitelist');
             <?= $templates->botCommandForm('chatmod warning3message', 'Warning #3 message', '[message]',
                 (array_key_exists('warning3message', $botSettings) ? $botSettings['warning3message'] : '')) ?>
           </div>
-          </div>
+        </div>
         <div class="row">
           <div class="col-sm-4">
             <?= $templates->botCommandForm('chatmod warningcountresettime', 'Warning Count Reset Time', '[seconds]',

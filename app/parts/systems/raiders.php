@@ -33,7 +33,7 @@ $firstTime = false;
 $addCommandJsActive = $functions->getModuleStatus('addCommand.js');
 $doRaidCommandForm = $templates->botCommandForm('doraid', 'Raid target', '[username]');
 
-if ($addCommandJsActive == 1 && $doRaidCommandResponse == '0') {
+if ($addCommandJsActive == 1 && (!$doRaidCommandResponse || $doRaidCommandResponse == '')) {
   $connection->send('!addcom doraid Let\'s raid (1)! Go to http://twitch.tv/(1) and say "' . $config->channelOwner . ' Raid!", throw them a follow and show the love! <3');
   $firstTime = true;
 } elseif ($addCommandJsActive == '0') {

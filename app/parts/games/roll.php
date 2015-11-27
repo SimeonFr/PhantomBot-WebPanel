@@ -41,10 +41,10 @@ $rollSettings = $functions->getIniArray('roll');
     <div class="panel-body">
       <div class="btn-toolbar">
         <?= $templates->botCommandButton('roll', 'Make A Roll') ?>
-        <?=$templates->switchToggle('Toggle Cool Down', 'doQuickCommand', '[\'roll wait\']',
-            null, (array_key_exists('roll_wait', $rollSettings) && filter_var($rollSettings['roll_wait'], FILTER_VALIDATE_BOOLEAN)))?>
-        <?=$templates->switchToggle('Toggle Stream-Online-Only', 'doQuickCommand', '[\'roll stream\']',
-            null, (array_key_exists('roll_stream', $rollSettings) && filter_var($rollSettings['roll_stream'], FILTER_VALIDATE_BOOLEAN)))?>
+        <?= $templates->switchToggle('Toggle Cool Down', 'doQuickCommand', '[\'roll wait\']',
+            null, (array_key_exists('roll_wait', $rollSettings) && filter_var($rollSettings['roll_wait'], FILTER_VALIDATE_BOOLEAN))) ?>
+        <?= $templates->switchToggle('Toggle Stream-Online-Only', 'doQuickCommand', '[\'roll stream\']',
+            null, (array_key_exists('roll_stream', $rollSettings) && filter_var($rollSettings['roll_stream'], FILTER_VALIDATE_BOOLEAN))) ?>
       </div>
       <hr/>
       <h4 class="collapsible-master">Roll Settings</h4>
