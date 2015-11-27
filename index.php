@@ -17,7 +17,7 @@ $config = new Configuration();
 <head lang="en">
   <meta charset="UTF-8">
   <title></title>
-  <link href="app/css/style.css" rel="stylesheet" type="text/css"/>
+  <link href="app/css/style_default.css" rel="stylesheet" type="text/css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <script src="/app/js/jquery-1.11.3.min.js" type="text/javascript"></script>

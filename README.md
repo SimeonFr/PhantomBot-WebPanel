@@ -14,7 +14,7 @@ Installation
 ---
 ###Prerequisites:###
 
-  * PhantomBot 1.6.4 or later.
+  * PhantomBot 1.6.5.1 or later.
   * A php enabled webserver (Try [Apache](http://www.apache.org/))
   * Make sure that './app/content/vars' is writeable by your webserver!
   
@@ -32,7 +32,7 @@ Installation
 
 ###Updating###
   1. Download the latest release.
-  2. Copy all the files over the old isntallation.
+  2. Copy all the files over the old installation.
   3. Run call http://webserver/update.php
 
 Customizing:

@@ -129,26 +129,29 @@ foreach ($defaultCommands as $command) {
 
 function getGroupId($group)
 {
-  switch (strtolower($group)) {
-    case 'caster':
-      return '0';
-    case 'administrator':
-      return '1';
-    case 'moderator':
-      return '2';
-    case 'subscriber':
-      return '3';
-    case 'donator':
-      return '4';
-    case 'hoster':
-      return '5';
-    case 'regular':
-      return '6';
-    case 'viewer':
-      return '7';
-    default:
-      return $group;
+  if (!is_numeric($group)) {
+    switch (strtolower($group)) {
+      case 'caster':
+        return '0';
+      case 'administrator':
+        return '1';
+      case 'moderator':
+        return '2';
+      case 'subscriber':
+        return '3';
+      case 'donator':
+        return '4';
+      case 'hoster':
+        return '5';
+      case 'regular':
+        return '6';
+      case 'viewer':
+        return '7';
+      default:
+        return $group;
+    }
   }
+  return $group;
 }
 
 ?>

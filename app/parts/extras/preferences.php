@@ -50,6 +50,8 @@ $theme = (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 
         <?= $templates->switchToggle('Show Tooltips', 'toggleTooltips', '[false]', 'toggle-tooltips-button') ?>
         <?= $templates->switchToggle('Show Chat By Default', 'toggleChatDefaultState', '[false]', 'toggle-chat-default-button') ?>
       </div>
+      <div class="spacer"></div>
+      <div class="-align-right"></div>
       <hr/>
       <h4>Misc PhantomBot Settings</h4>
 

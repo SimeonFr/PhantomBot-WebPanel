@@ -50,7 +50,7 @@ foreach ($recordedFollows as $username => $follows) {
     <div class="panel-body">
       <div class="row">
         <div class="col-sm-4">
-          <?= $templates->botCommandForm('follow', 'Check follower') ?>
+          <?= $templates->botCommandForm('followed', 'Check follower') ?>
         </div>
         <div class="col-sm-4">
           <?= $templates->botCommandForm('lastseen', 'Last seen') ?>

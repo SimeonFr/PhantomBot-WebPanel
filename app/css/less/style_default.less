@@ -5,11 +5,7 @@
  * Date: 12 okt 2015
  * Time: 12:32
  */
-@import "less/bootstrap/variables";
-/* pre-compiled */
-@import "less/bootstrap/bootstrap.css";
-@import "less/font-awesome/font-awesome.css";
-@import "less/switch-toggle/switch-toggle.css";
+@import "bootstrap/bootstrap_bare";
 
 body {
   &.chat-enabled {
@@ -207,7 +203,7 @@ a {
       white-space: nowrap;
     }
     .text {
-      font-family: "Lucida Console";
+      font-family: "Lucida Console", serif;
       min-width: 100%;
       &:last-child {
         margin-left: -3px;
@@ -301,7 +297,7 @@ a {
 .collapsible-content {
   display: none;
   overflow: hidden;
-  &:open {
+  &.open {
     display: block;
   }
 }
