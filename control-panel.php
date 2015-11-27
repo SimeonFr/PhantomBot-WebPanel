@@ -8,11 +8,11 @@
  */
 define('BASEPATH', realpath(dirname(__FILE__)));
 
-require_once(BASEPATH . '/app/php/classes/Configuration.class.php');
-require_once(BASEPATH . '/app/php/classes/ConnectionHandler.class.php');
-require_once(BASEPATH . '/app/php/classes/Functions.class.php');
-require_once(BASEPATH . '/app/php/classes/ComponentTemplates.class.php');
-require_once(BASEPATH . '/app/php/classes/PanelSession.class.php');
+require_once BASEPATH . '/app/php/classes/Configuration.class.php';
+require_once BASEPATH . '/app/php/classes/ConnectionHandler.class.php';
+require_once BASEPATH . '/app/php/classes/Functions.class.php';
+require_once BASEPATH . '/app/php/classes/ComponentTemplates.class.php';
+require_once BASEPATH . '/app/php/classes/PanelSession.class.php';
 
 $session = new PanelSession();
 $config = new Configuration();
@@ -33,47 +33,46 @@ $partsList = $functions->getPartsList();
 $renderedMenu = '';
 
 foreach ($partsList as $parentName => $subItems) {
-  $parentId = 'menu-parent-' . $parentName;
-  $renderedMenu .= '<li class="dropdown" id="' . $parentId . '"><a nohref class="dropdown-toggle" role="button">' . ucwords($parentName) . '</a><ul class="dropdown-menu" role="menu">';
+	$parentId = 'menu-parent-' . $parentName;
+	$renderedMenu .= '<li class="dropdown" id="' . $parentId . '"><a nohref class="dropdown-toggle" role="button">' . ucwords($parentName) . '</a><ul class="dropdown-menu" role="menu">';
 
-  $icon = 'fa-cog';
-  switch ($parentName) {
-    case 'games':
-      $icon = 'fa-gamepad';
-      break;
-    case 'extras':
-      $icon = 'fa-plug';
-      break;
-  }
+	$icon = 'fa-cog';
+	switch ($parentName) {
+	case 'games':
+		$icon = 'fa-gamepad';
+		break;
+	case 'extras':
+		$icon = 'fa-plug';
+		break;
+	}
 
-  foreach ($subItems as $item) {
-    $openPartParam = '\'' . $parentName . '/' . $item['partFile'] . '\'';
-    $customScriptIcon = ($item['isCustom'] ? '&nbsp;&nbsp;&nbsp;<span class="fa fa-wrench"></span>' : '');
-    $renderedMenu .= '<li><a nohref onclick="openPart(' . $openPartParam . ')" role="button"><span class="fa ' . $icon . '"></span>&nbsp;' . $item['partName'] . $customScriptIcon . '</a></li>';
-  }
+	foreach ($subItems as $item) {
+		$openPartParam = '\'' . $parentName . '/' . $item['partFile'] . '\'';
+		$customScriptIcon = ($item['isCustom'] ? '&nbsp;&nbsp;&nbsp;<span class="fa fa-wrench"></span>' : '');
+		$renderedMenu .= '<li><a nohref onclick="openPart(' . $openPartParam . ')" role="button"><span class="fa ' . $icon . '"></span>&nbsp;' . $item['partName'] . $customScriptIcon . '</a></li>';
+	}
 
-  if ($parentName == 'extras') {
-    $renderedMenu .= '<li class="divider"></li>'
-        . '<li><a nohref onclick="toggleChat(false, this);" id="toggle-chat" role="button"><span class="fa fa-eject"></span>&nbsp;Show Chat</a></li>'
-        . '<li><a nohref onclick="toggleMusicPlayerControls(false, this);" id="player-controls-toggle" role="button"><span class="fa fa-eject"></span>&nbsp;Show Music Player Controls</a></li>'
-        . '<li class="divider"></li>'
-        . '<li><a href="http://www.phantombot.net/threads/command-list-by-script.13/" target="_blank" role="button"><span class="fa fa-question-circle"></span>&nbsp;PhantomBot Commands ist</a></li>'
-        . '<li><a href="http://www.phantombot.net" target="_blank"><span class="fa fa-question-circle" role="button"></span>&nbsp;PhantomBot Forums</a></li>';
-  }
+	if ($parentName == 'extras') {
+		$renderedMenu .= '<li class="divider"></li>'
+			. '<li><a nohref onclick="toggleChat(false, this);" id="toggle-chat" role="button"><span class="fa fa-eject"></span>&nbsp;Show Chat</a></li>'
+			. '<li><a nohref onclick="toggleMusicPlayerControls(false, this);" id="player-controls-toggle" role="button"><span class="fa fa-eject"></span>&nbsp;Show Music Player Controls</a></li>'
+			. '<li class="divider"></li>'
+			. '<li><a href="http://www.phantombot.net/threads/command-list-by-script.13/" target="_blank" role="button"><span class="fa fa-question-circle"></span>&nbsp;PhantomBot Commands ist</a></li>'
+			. '<li><a href="http://www.phantombot.net" target="_blank"><span class="fa fa-question-circle" role="button"></span>&nbsp;PhantomBot Forums</a></li>';
+	}
 
-  $renderedMenu .= '</ul></li>';
+	$renderedMenu .= '</ul></li>';
 }
-
 
 if ($hostHandlerActive == 1) {
-  $NOHosts = $functions->getIniValueByKey('stream_info.ini', 'hosts_amount');
+	$NOHosts = $functions->getIniValueByKey('stream_info.ini', 'hosts_amount');
 }
 if ($subscribeHandlerActive == 1) {
-  $subscribers = $functions->getIniArray('subscribed.ini');
-  $NOSubscribers = 0;
-  foreach ($subscribers as $subActive) {
-    $NOSubscribers += ($subActive == 1 ? 1 : 0);
-  }
+	$subscribers = $functions->getIniArray('subscribed.ini');
+	$NOSubscribers = 0;
+	foreach ($subscribers as $subActive) {
+		$NOSubscribers += ($subActive == 1 ? 1 : 0);
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -106,7 +105,7 @@ if ($subscribeHandlerActive == 1) {
         <li id="menu-parent-dashboard">
           <a nohref onclick="openPart('static/dashboard.php')" role="button">Dashboard</a>
         </li>
-        <?= $renderedMenu ?>
+        <?=$renderedMenu?>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -116,23 +115,23 @@ if ($subscribeHandlerActive == 1) {
     </div>
     <div class="container-fluid">
       <ul id="favorites-menu" class="nav navbar-nav">
-        <?= $templates->addTooltip('<li class="favorites-menu-icon"><span class="fa fa-star-half-empty"></span></li>', 'Favorites',
-            ['position' => ComponentTemplates::TOOLTIP_POS_LEFT, 'offsetX' => 10, 'offsetY' => 21, 'appendToBody' => true]) ?>
+        <?=$templates->addTooltip('<li class="favorites-menu-icon"><span class="fa fa-star-half-empty"></span></li>', 'Favorites',
+	['position' => ComponentTemplates::TOOLTIP_POS_LEFT, 'offsetX' => 10, 'offsetY' => 21, 'appendToBody' => true])?>
       </ul>
     </div>
   </nav>
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <?= $config->botName ?> on channel <?= $config->channelOwner ?>
-        <?= str_repeat('<span class="pull-right info-banner-space-left">&nbsp;</span>', 3) ?>
-        <?= $templates->streamInfoBanner($NOSubscribers, 'dollar', 'warning', 'Subscriber Count', '', ($NOSubscribers > -1)) ?>
-        <?= $templates->streamInfoBanner($NOHosts, 'forward', 'info', 'Host Count', 'stream-hosts', ($NOHosts > -1)) ?>
-        <?= $templates->streamInfoBanner('NA', 'heartbeat', 'danger', 'Follower Count', 'stream-followers') ?>
-        <?= $templates->streamInfoBanner('NA', 'users', 'success', 'Viewer Count', 'stream-viewer-count') ?>
-        <?= $templates->streamInfoBanner('Offline', 'rss', 'info', 'Stream Status', 'stream-status') ?>
-        <?= (!$isBotOnline ? $templates->streamInfoBanner('Bot Offline', 'exclamation-circle', 'danger',
-            '<span class="text-danger">Could not contact the bot.</span><br />Make sure it\'s running and the HTTP server is active.') : '') ?>
+        <?=$config->botName?> on channel <?=$config->channelOwner?>
+        <?=str_repeat('<span class="pull-right info-banner-space-left">&nbsp;</span>', 3)?>
+        <?=$templates->streamInfoBanner($NOSubscribers, 'dollar', 'warning', 'Subscriber Count', '', ($NOSubscribers > -1))?>
+        <?=$templates->streamInfoBanner($NOHosts, 'forward', 'info', 'Host Count', 'stream-hosts', ($NOHosts > -1))?>
+        <?=$templates->streamInfoBanner('NA', 'heartbeat', 'danger', 'Follower Count', 'stream-followers')?>
+        <?=$templates->streamInfoBanner('NA', 'users', 'success', 'Viewer Count', 'stream-viewer-count')?>
+        <?=$templates->streamInfoBanner('Offline', 'rss', 'info', 'Stream Status', 'stream-status')?>
+        <?=(!$isBotOnline ? $templates->streamInfoBanner('Bot Offline', 'exclamation-circle', 'danger',
+	'<span class="text-danger">Could not contact the bot.</span><br />Make sure it\'s running and the HTTP server is active.') : '')?>
       </h3>
     </div>
     <div class="panel-body">
@@ -148,12 +147,13 @@ if ($subscribeHandlerActive == 1) {
   <div class="panel panel-default page-footer">
     <div class="panel-body text-muted">
       PhantomBot Control Panel
-      <small><?= $config->version ?></small>
-      , developed by <a href="//juraji.nl" target="_blank">Juraji</a> &copy;<?= date('Y') ?><br/>
-      Compatible with <a href="//www.phantombot.net/" target="_blank">PhantomBot <?= $config->pBCompat ?></a>, developed by <a
-          href="//phantombot.net/members/phantomindex.1/" target="_blank">PhantomIndex</a>, <a href="//phantombot.net/members/gloriouseggroll.2/"
-                                                                                               target="_blank">GloriousEggroll</a> &amp; <a
-          href="//phantombot.net/members/gmt2001.28/" target="_blank">gmt2001</a>
+      <small><?=$config->version?></small>
+      Developed by <a href="//juraji.nl" target="_blank">juraji</a> &copy;<?=date('Y')?><br/>
+      Compatible with <a href="//www.phantombot.net/" target="_blank">PhantomBot <?=$config->pBCompat?></a><br/>
+      Developed by <a href="//phantombot.net/members/phantomindex.1/" target="_blank">phantomindex</a>,
+      <a href="//phantombot.net/members/gloriouseggroll.2/" target="_blank">gloriouseggroll</a>,
+      <a href="//phantombot.net/members/gmt2001.28/" target="_blank">gmt2001</a>
+      &amp; <a href="//phantombot.net/members/lawlypopzz.1413/" target="_blank">lawlypopzz</a>
     </div>
   </div>
 </div>
@@ -162,7 +162,7 @@ if ($subscribeHandlerActive == 1) {
 </div>
 <div id="general-alert" class="alert"></div>
 <div id="music-player-controls">
-  <?php require_once(BASEPATH . '/app/parts/static/music-player-controls.php'); ?>
+  <?php require_once BASEPATH . '/app/parts/static/music-player-controls.php';?>
 </div>
 </body>
 </html>
