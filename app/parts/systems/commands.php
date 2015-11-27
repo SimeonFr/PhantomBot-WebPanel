@@ -56,9 +56,9 @@ foreach ($customCommandsIni as $command => $message) {
     $msgClass = '';
   }
   if (array_key_exists($command, $commandPermIni)) {
-    $perm = $groups[$commandPermIni[$command]];
+    $perm = $groups[getGroupId($commandPermIni[$command])];
   } elseif (array_key_exists($command . '_recursive', $commandPermIni)) {
-    $perm = $groups[$commandPermIni[$command . '_recursive']] . '+';
+    $perm = $groups[getGroupId($commandPermIni[$command . '_recursive'])] . '+';
   } else {
     $perm = 'Viewer';
   }
@@ -79,7 +79,7 @@ foreach ($customCommandsIni as $command => $message) {
   $customCommandsTableRows .= '<tr>'
       . $templates->addTooltip('<td class="command-actor">' . $actor . '</td>',
           '<span class="message ' . $msgClass . '">' . $message . '</span>',
-          ['position' => ComponentTemplates::TOOLTIP_POS_RIGHT, 'offsetY' => (strlen($message) < 50 ? 17: (strlen($message) > 90 ? -17 : 0))]
+          ['position' => ComponentTemplates::TOOLTIP_POS_RIGHT, 'offsetY' => (strlen($message) < 50 ? 17 : (strlen($message) > 90 ? -17 : 0))]
       )
       . '<td class="price">' . $price . '</td>'
       . '<td>' . $perm . '</td>'
@@ -104,11 +104,11 @@ foreach ($defaultCommands as $command) {
     }
   }
   if (array_key_exists($command, $commandPermIni)) {
-    $perm = $groups[$commandPermIni[$command]];
+    $perm = $groups[getGroupId($commandPermIni[$command])];
   } elseif (array_key_exists($command . '_recursive', $commandPermIni)) {
-    $perm = $groups[$commandPermIni[$command . '_recursive']] . '+';
+    $perm = $groups[getGroupId($commandPermIni[$command . '_recursive'])] . '+';
   } else {
-    $perm = '';
+    $perm = '(not set in permcom)';
   }
   if (array_key_exists($command, $commandPriceIni) && $commandPriceIni[$command] != '') {
     if (intval($commandPriceIni[$command]) < 1 || intval($commandPriceIni[$command]) > 1) {
@@ -127,6 +127,29 @@ foreach ($defaultCommands as $command) {
       . '</tr>';
 }
 
+function getGroupId($group)
+{
+  switch (strtolower($group)) {
+    case 'caster':
+      return '0';
+    case 'administrator':
+      return '1';
+    case 'moderator':
+      return '2';
+    case 'subscriber':
+      return '3';
+    case 'donator':
+      return '4';
+    case 'hoster':
+      return '5';
+    case 'regular':
+      return '6';
+    case 'viewer':
+      return '7';
+    default:
+      return $group;
+  }
+}
 
 ?>
 <div class="app-part">
@@ -140,7 +163,7 @@ foreach ($defaultCommands as $command) {
     </div>
     <div class="panel-body">
       <?= $templates->botCommandForm('', 'Run command', '[command] [params]') ?>
-      <hr />
+      <hr/>
       <h4 class="collapsible-master">Command Creation</h4>
 
       <div class="collapsible-content">
@@ -189,7 +212,7 @@ foreach ($defaultCommands as $command) {
                     any group ranked higher.
                   </li>
                 </ul>
-                <p><b>Alias:</b> Alias means another word for the same command. If you set !points with an alias as wallet, the command will respond to !wallet.</p>') ?>
+                <p><b>Alias:</b> Alias means another word for the same command. If you set !points with an alias as wallet, the !points command will respond to !wallet.</p>') ?>
           </div>
         </div>
       </div>

@@ -281,16 +281,18 @@ class Functions
    */
   public function botTimeToStandardFormat($botTime)
   {
-    $botTimeMatches = [];
-    preg_match('/([0-9]{2})-([0-9]{2})-([0-9]{4})\s\@\s([0-9:]+)\s([0-9+]+)/', $botTime, $botTimeMatches);
-    $dateTime = new DateTime(
-        $botTimeMatches[3] . '-'
-        . $botTimeMatches[1] . '-'
-        . $botTimeMatches[2] . 'T'
-        . $botTimeMatches[4]
-        . $botTimeMatches[5]
-    );
-    return $dateTime->format('D dS M Y @ h:m a');
+    if (preg_match('/([0-9]{2})-([0-9]{2})-([0-9]{4})\s\@\s([0-9:]+)\s([0-9+]+)/', $botTime, $botTimeMatches)) {
+      $dateTime = new DateTime(
+          $botTimeMatches[3] . '-'
+          . $botTimeMatches[1] . '-'
+          . $botTimeMatches[2] . 'T'
+          . $botTimeMatches[4]
+          . $botTimeMatches[5]
+      );
+      return $dateTime->format('D dS M Y @ h:m a');
+    } else {
+      return $botTime;
+    }
   }
 
   /**
