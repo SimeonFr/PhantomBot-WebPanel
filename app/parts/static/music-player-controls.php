@@ -19,10 +19,7 @@
     </div>
   </div>
 </div>
-<div id="current-video-title">
-  <div class="text">&nbsp;<?= $functions->cleanYTVideoTitle($musicPlayerCurrentSong) ?></div>
-  <div class="text">&nbsp;<?= $functions->cleanYTVideoTitle($musicPlayerCurrentSong) ?></div>
-</div>
+<div id="current-video-title"><?= $functions->cleanYTVideoTitle($musicPlayerCurrentSong) ?></div>
 <div class="options">
   <a href="/music-player.php?botControl=true" target="_blank">
     <button class="btn btn-primary btn-sm">Open Player</button>

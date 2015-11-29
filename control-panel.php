@@ -26,7 +26,7 @@ $botSettings = $functions->getIniArray('settings');
 $isBotOnline = ($connection->testConnection()[2] == 52);
 $hostHandlerActive = $functions->getIniValueByKey('modules.ini', 'hostHandler.js', true);
 $subscribeHandlerActive = $functions->getIniValueByKey('modules.ini', 'subscribeHandler.js', true);
-$musicPlayerCurrentSong = $functions->getOtherFile('/addons/youtubePlayer/currentsong.txt');
+$musicPlayerCurrentSong = $functions->getOtherFile($config->paths['youtubeCurrentSong']);
 $NOHosts = -1;
 $NOSubscribers = -1;
 $partsList = $functions->getPartsList();

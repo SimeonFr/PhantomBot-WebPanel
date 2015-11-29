@@ -188,29 +188,11 @@ a {
   }
   #current-video-title {
     padding: 7px 0 8px 0;
-    width: 30%;
+    width: ~"calc(100% - 515px)";
     overflow: hidden;
     white-space: nowrap;
     background-color: @gray-darker;
     color: #ffffff;
-    &.long {
-      .text {
-        animation: scroll-text 10s linear;
-        animation-iteration-count: infinite;
-      }
-    }
-    .text, .music-title-spacer {
-      display: inline-block;
-      vertical-align: top;
-      white-space: nowrap;
-    }
-    .text {
-      font-family: "Lucida Console", serif;
-      min-width: 100%;
-      &:last-child {
-        margin-left: -3px;
-      }
-    }
   }
   .options {
     float: right;

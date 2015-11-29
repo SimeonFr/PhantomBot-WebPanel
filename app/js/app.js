@@ -591,15 +591,7 @@ function updateFavoritesMenu(itemName, itemPath) {
 function updateMusicPlayerState() {
   if (pBotData.musicPlayerControls.controlsEnabled) {
     doBotRequest('getCurrentTitle', function (result) {
-      var titleElement = $('#current-video-title'),
-          titleText = result;
-      if ((titleText.length * 9) > titleElement.width()) {
-        titleElement.find('.text').html('&nbsp;' + titleText + _repeat('&nbsp;', 10));
-        titleElement.addClass('long');
-      } else {
-        titleElement.find('.text:first-child').html('&nbsp;' + titleText);
-        titleElement.removeClass('long');
-      }
+      $('#current-video-title').html(result);
     });
   }
 }
@@ -608,14 +600,6 @@ function togglePlayPause() {
   doBotRequest('command', function (result) {
     showGeneralAlert(result, 'success');
   }, {command: 'pause'});
-}
-
-function _repeat(string, count) {
-  var str = '', i = 0;
-  for (i; i < count; i++) {
-    str += string;
-  }
-  return str;
 }
 
 function _cleanInput(input) {
