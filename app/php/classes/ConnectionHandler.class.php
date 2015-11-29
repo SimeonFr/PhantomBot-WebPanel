@@ -82,11 +82,12 @@ class ConnectionHandler {
       $uri = '/' . $uri;
     }
 
-    $this->curl = curl_init($this->config->botIp . ':' . $this->config->botBasePort . $uri);
+    $this->curl = curl_init($this->config->botIp . $uri);
+    curl_setopt($this->curl, CURLOPT_PORT, $this->config->botBasePort);
     curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($this->curl, CURLOPT_CONNECTTIMEOUT, 5);
     curl_setopt($this->curl, CURLOPT_TIMEOUT, 5);
-    curl_setopt($this->curl, CURLOPT_USERAGENT, 'PhantomPanel/1.0');
+    curl_setopt($this->curl, CURLOPT_USERAGENT, 'Chrome/44.0.2403.52 PhantomPanel/1.0');
 
     if (defined('CURLOPT_IPRESOLVE')) {
       curl_setopt($this->curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);

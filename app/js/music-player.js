@@ -11,7 +11,7 @@ var player,
     videos = [],
     i = -1,
     //noinspection JSUnresolvedVariable
-    connection = new WebSocket('ws://' + botAddress + ':25001');
+    connection = new WebSocket('ws://' + botAddress);
 
 //noinspection JSUnusedGlobalSymbols
 function onYouTubeIframeAPIReady() {

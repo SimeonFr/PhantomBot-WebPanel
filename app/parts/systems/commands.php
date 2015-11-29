@@ -203,7 +203,7 @@ function getGroupId($group)
             <?= $templates->botCommandForm('aliascom', 'Add alias', '[command] [alias]') ?>
             <?= $templates->botCommandForm('coolcom', 'Add cooldown', '[command] [cooldown]') ?>
             <?= $templates->botCommandForm('pricecom', 'Price', '[command] [amount]') ?>
-            <?= $templates->botCommandForm('permcom', 'permission', '[command] [group] [mode]') ?>
+            <?= $templates->botCommandForm('permcom', 'Permission', '[command] [group] [mode]') ?>
             <?= $templates->botCommandForm('rewardcom', 'Reward', '[command] [amount]') ?>
           </div>
           <div class="col-sm-6">

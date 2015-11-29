@@ -13,6 +13,7 @@ require_once BASEPATH . '/app/php/classes/Configuration.class.php';
 $config = new Configuration();
 
 $botControl = filter_input(INPUT_GET, 'botControl', FILTER_VALIDATE_BOOLEAN);
+$musicServerAdress = $config->botIp . ':' . (intval($config->botBasePort) + 1);
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,7 +25,7 @@ $botControl = filter_input(INPUT_GET, 'botControl', FILTER_VALIDATE_BOOLEAN);
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    var botAddress = '<?= $config->botIp ?>',
+    var botAddress = '<?= $musicServerAdress ?>',
         botControl = <?= ($botControl ? 'true' : 'false') ?>;
   </script>
   <script src="//code.jquery.com/jquery-1.11.3.min.js" type="text/javascript"></script>
