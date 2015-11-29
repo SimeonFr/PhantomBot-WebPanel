@@ -62,9 +62,9 @@ foreach ($customCommandsIni as $command => $message) {
     $perm = 'Viewer';
   }
   if (preg_match('/\([0-9]\)|\([.]{3}\)/i', $message)) {
-    $actor = $templates->botCommandForm($command, '', '!' . $command, null, null, false, true);
+    $actor = $templates->botCommandForm($command, '', '!' . $command);
   } else {
-    $actor = $templates->botCommandButton($command, '!' . $command, 'default btn-sm btn-block');
+    $actor = $templates->botCommandButton($command, '!' . $command, 'default btn-block');
   }
   if (array_key_exists($command, $commandPriceIni)) {
     if (intval($commandPriceIni[$command]) < 1 || intval($commandPriceIni[$command]) > 1) {
@@ -80,10 +80,12 @@ foreach ($customCommandsIni as $command => $message) {
           '<span class="message ' . $msgClass . '">' . $message . '</span>',
           ['position' => ComponentTemplates::TOOLTIP_POS_RIGHT, 'offsetY' => (strlen($message) < 50 ? 17 : (strlen($message) > 90 ? -17 : 0))]
       )
-      . '<td class="price">' . $price . '</td>'
-      . '<td>' . $perm . '</td>'
-      . '<td>' . join('<br />', $commandAliases) . '</td>'
-      . '<td>' . $templates->botCommandButton('delcom ' . $command, '<span class="fa fa-trash"></span>', 'danger', 'Are you sure you want to delete !' . $command . '?') . '</td>'
+      . '<td>'
+      . '<span class="text-muted">Group:</span>&nbsp;' . $perm . '<br />'
+      . '<span class="text-muted">Price:</span>&nbsp;' . $price
+      . '</td>'
+      . '<td>' . join(', ', $commandAliases) . '</td>'
+      . '<td class="actions">' . $templates->botCommandButton('delcom ' . $command, '<span class="fa fa-trash"></span>', 'danger', 'Are you sure you want to delete !' . $command . '?') . '</td>'
       . '</tr>';
 }
 
@@ -221,15 +223,9 @@ function getGroupId($group)
         </div>
       </div>
       <hr/>
-      <div class="row">
-        <div class="col-sm-6">
-          <?= $templates->dataTable('Current Custom Commands', ['Command', 'price', 'Permissions', 'Aliases'], $customCommandsTableRows, true, 'custom-commands') ?>
-        </div>
-        <div class="col-sm-6">
-          <?= $templates->dataTable('Default Command Settings', ['Command', 'price', 'Permissions', 'Aliases'], $defaultCommandsTableRows, true, 'custom-commands') ?>
-        </div>
-      </div>
+      <?= $templates->dataTable('Current Custom Commands', ['Command', 'Attributes', 'Aliases', ''], $customCommandsTableRows, true, 'custom-commands') ?>
       <hr/>
+      <?= $templates->dataTable('Default Command Settings', ['Command', 'price', 'Permissions', 'Aliases'], $defaultCommandsTableRows, true, 'custom-commands') ?>
     </div>
   </div>
 </div>
