@@ -42,10 +42,13 @@ uksort($moduleSettingsIni, function ($a, $b) use ($moduleNameReplacements) {
 });
 
 foreach ($moduleSettingsIni as $fullPath => $active) {
+  if (strpos($fullPath, 'lang-') > -1) {
+    continue;
+  }
   $moduleName = ucfirst(str_replace($moduleNameReplacements, '', $fullPath));
   $moduleFullPath = str_replace('_enabled', '', $fullPath);
   $toggleButton = '';
-  $active = ($active == 1 || strpos($moduleFullPath, 'util') > -1 || strpos($moduleFullPath, 'lang') > -1);
+  $active = ($active == 1 || strpos($moduleFullPath, 'util') > -1);
 
   if ($active) {
     $NOModulesActive++;
