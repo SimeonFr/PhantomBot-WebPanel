@@ -188,8 +188,8 @@ class ComponentTemplates
             'Enable this module in Extras->Modules Manager to use it.', ['position' => ComponentTemplates::TOOLTIP_POS_LEFT, 'offsetX' => -5]);
         break;
       default:
-        return $this->addTooltip('<span class="text-success pull-right"><span class="fa fa-check-circle"></span> Module Active**</span>',
-            'Module status is unknown.<br />See Modules page for more information', ['position' => ComponentTemplates::TOOLTIP_POS_LEFT, 'offsetX' => -5]);
+        return $this->addTooltip('<span class="text-warning pull-right"><span class="fa fa-check-circle"></span> Module Status Unknown</span>',
+            'Module status is unknown.<br />See Extras->Modules for more information', ['position' => ComponentTemplates::TOOLTIP_POS_LEFT, 'offsetX' => -5]);
         break;
     }
   }

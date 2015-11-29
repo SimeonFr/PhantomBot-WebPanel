@@ -75,8 +75,8 @@ foreach ($moduleSettingsIni as $fullPath => $active) {
     <div class="panel-body">
       <?= $templates->informationPanel('<p>
         Note: Not all modules are listed here.<br/>
-        Unlisted modules can be enabled/disabled by using "!module &lt;enable/disable&gt; &lt;module path&gt;".<br/>
-        After using the !module command, the module will become listed here.
+        Unlisted modules can be enabled/disabled by using "Manually Enable/Disable Modules".<br/>
+        After manually enabling the module, the module will become listed here.
       </p>
 
       <p>
@@ -86,9 +86,8 @@ foreach ($moduleSettingsIni as $fullPath => $active) {
         <li>"<span class="text-success"><span class="fa fa-check-circle"></span> Module Activated</span>" - Module is
           known and active
         </li>
-        <li>"<span class="text-success"><span class="fa fa-check-circle"></span> Module Activated**</span>" - Module
-          status is unknown, assuming active.
-          (PhantomBot enables modules by default)
+        <li>"<span class="text-warning"><span class="fa fa-question-circle"></span> Module Status Unknown</span>" - Module
+          status is unknown. This means the module is not listed in the module config. Manually enabling it fixes this!
         </li>
         <li>"<span class="text-danger"><span class="fa fa-exclamation-circle"></span> Module Inactive</span>" - Module
           is known and inactive
