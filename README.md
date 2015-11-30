@@ -7,7 +7,6 @@ If you are looking for theirs head over to [The PhantomBot Website](http://www.p
 This software is free to user under GNU GENERAL PUBLIC LICENSE Version 2.  
 Some of the modules in PhantomBot aren't yet supported in this panel. But I will add these as soon as I can!
 
-###Having issues using this WebPanel? Create an issue on [Github Issues](https://github.com/Juraji/PhantomBot-WebPanel/issues)!###
 ###This repository is constantly being updated with cutting edge, untested features! Need a stable version? Check the releases.###
 
 Installation
