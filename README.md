@@ -14,7 +14,7 @@ Installation
 ---
 ###Prerequisites:###
 
-  * PhantomBot 1.6.5.1 or later.
+  * PhantomBot 1.6.6 or later.
   * A php enabled webserver (Try [Apache](http://www.apache.org/))
   * Make sure that './app/content/vars' is writeable by your webserver!
   
@@ -35,6 +35,5 @@ Installation
   2. Copy all the files over the old installation.
   3. Run call http://webserver/update.php
 
-Customizing:
----
-I shall add a full description on customizing the interface at a later point.
+###Known Issues###
+  * The panel is known for not running smoothly when it's in a subfolder. I us thereby recommended to place it in the webroot of your webserver.
