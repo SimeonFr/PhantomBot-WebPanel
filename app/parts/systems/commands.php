@@ -190,6 +190,8 @@ function getGroupId($group)
                   <li>(#) - generates a random number 1-100</li>
                   <li>(1) - this targets the first argument in a command.</li>
                   <li>(2) - this targets the second argument in a command.</li>
+                  <li>(file path/to/file) - replace this tag with the contents of the given file.</li>
+                  <li>(customapi requesturl) - replace this tag with the result of the request call.</li>
                 </ul>
               </div>
             </div>
