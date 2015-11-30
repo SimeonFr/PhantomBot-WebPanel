@@ -75,15 +75,6 @@ $(window).ready(function () {
   }
 });
 
-function addSecondChat() {
-  var input = $('#second-chat-form-input');
-  if (input.val() != '') {
-    $('#chat-sidebar')
-        .addClass('double-chat')
-        .append('<iframe id="chat-iframe-secondary" src="http://www.twitch.tv/' + input.val().toLocaleLowerCase() + '/chat?popout=" scrolling="no"></iframe>');
-  }
-}
-
 function applyChannelData(channelData) {
   if (channelData.stream != null) {
     $('#stream-status').text('Online');
@@ -240,16 +231,6 @@ function bindPartEventHandlers() {
   toggleInformationPanels(true);
 }
 
-function calculateStreamHeight(event) {
-  var that;
-  if (event) {
-    that = $(event.currentTarget);
-  } else {
-    that = $('#stream-preview');
-  }
-  that.height(that.outerWidth() * 0.5625 + 30);
-}
-
 function channelDataCache(data) {
   if (data) {
     data.pbotCacheEndTime = Date.now() + 3e5;
@@ -257,12 +238,6 @@ function channelDataCache(data) {
   } else {
     return pBotStorage.get(pBotStorage.keys.twitchCache, false);
   }
-}
-
-function clearSecondChat() {
-  $('#chat-iframe-secondary').remove();
-  $('#chat-sidebar').removeClass('double-chat');
-  $('#second-chat-form-input').val('');
 }
 
 function doBotRequest(action, callback, params) {
@@ -380,7 +355,7 @@ function loadPartFromStorage() {
 function logOut() {
   localStorage.removeItem(pBotStorage.keys.twitchCache);
   localStorage.removeItem(pBotStorage.keys.panelLogin);
-  location.replace('/');
+  location.replace('index.php');
 }
 
 //noinspection JSUnusedGlobalSymbols
@@ -490,26 +465,6 @@ function toggleMusicPlayerControls(fromLoad, button) {
     pBotData.musicPlayerControls.updateIntervalId = setInterval(updateMusicPlayerState, 5e3);
     $(button).html('<span class="fa fa-eject text-success"></span>&nbsp;Hide Music Player Controls');
   }
-}
-
-function toggleStreamPreview(fromLoad) {
-  if (fromLoad != undefined) {
-    pBotData.streamPreviewActive = false;
-    return;
-  }
-  var streamPreview = $('#stream-preview');
-  if (pBotData.streamPreviewActive) {
-    pBotData.streamPreviewActive = false;
-    streamPreview
-        .removeClass('open')
-        .attr('src', '');
-  } else {
-    pBotData.streamPreviewActive = true;
-    streamPreview
-        .addClass('open')
-        .attr('src', 'http://twitch.tv/' + pBotData.config.owner + '/embed');
-  }
-  $('#stream-preview-fit-video').toggle(pBotData.streamPreviewActive);
 }
 
 function toggleTooltips(fromLoad) {

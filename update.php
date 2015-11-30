@@ -56,7 +56,7 @@ if ($updateInstalledTo > -1) {
 <head lang="en">
   <meta charset="UTF-8">
   <title></title>
-  <link href="/app/css/<?= (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 'style_dark') ?>.css" rel="stylesheet" type="text/css"/>
+  <link href="app/css/<?= (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 'style_dark') ?>.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="page-wrapper">

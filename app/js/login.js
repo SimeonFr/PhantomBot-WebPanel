@@ -23,13 +23,13 @@ $(document).ready(function () {
 function login(loginData) {
   $.ajax({
     type: "POST",
-    url: '/app/php/login.php',
+    url: 'app/php/login.php',
     data: loginData,
     dataType: 'json',
     success: function (data) {
       if (data[1] == 200) {
         localStorage.setItem('pbot-login', JSON.stringify(loginData));
-        window.location.replace('/control-panel.php');
+        window.location.replace('control-panel.php');
       } else {
         showLoginAlert(data[3])
       }
