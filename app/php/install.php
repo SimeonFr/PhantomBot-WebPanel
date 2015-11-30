@@ -32,7 +32,7 @@ if (is_array($input) && array_key_exists('currentStep', $input)) {
 
 function saveError()
 {
-  echo 'Could not save your settings to the configuration file! Make sure "./app/content/vars" is writable for your webserver.';
+  echo 'Could not save your settings to the configuration file! Make sure that the installation directory is writeable by your webserver!';
   exit;
 }
 
