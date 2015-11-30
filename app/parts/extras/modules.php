@@ -86,14 +86,9 @@ foreach ($moduleSettingsIni as $fullPath => $active) {
         Note: Each module page has a module active indication. Here\'s a list of possible module statuses:
       </p>
       <ul>
-        <li>"<span class="text-success"><span class="fa fa-check-circle"></span> Module Activated</span>" - Module is
-          known and active
+        <li>"<span class="text-success"><span class="fa fa-check-circle"></span> Module Activated</span>" - Module is active
         </li>
-        <li>"<span class="text-warning"><span class="fa fa-question-circle"></span> Module Status Unknown</span>" - Module
-          status is unknown. This means the module is not listed in the module config. Manually enabling it fixes this!
-        </li>
-        <li>"<span class="text-danger"><span class="fa fa-exclamation-circle"></span> Module Inactive</span>" - Module
-          is known and inactive
+        <li>"<span class="text-danger"><span class="fa fa-exclamation-circle"></span> Module Inactive</span>" - Module is inactive
         </li>
       </ul>') ?>
       <hr/>

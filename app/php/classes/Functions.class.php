@@ -302,12 +302,18 @@ class Functions
   public function getModuleStatus($scriptName)
   {
     $modules = $this->getIniArray('/inistore/modules.ini', true);
+    $defaultSettings = $this->config->getDefaultDisabledModules();
     foreach ($modules as $moduleFullPath => $active) {
       if (strpos(strtolower($moduleFullPath), strtolower($scriptName)) > -1) {
         return $active;
       }
     }
-    return -1;
+    foreach ($defaultSettings as $moduleName) {
+      if (strpos(strtolower($scriptName), strtolower($moduleName)) > -1) {
+        return 0;
+      }
+    }
+    return 1;
   }
 
   /**

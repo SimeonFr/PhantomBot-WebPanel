@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Configuration.class.php
  * Created with PhpStorm
@@ -87,7 +88,8 @@ class Configuration
    * @param array $data
    * @return bool
    */
-  public function _saveToConfig($data){
+  public function _saveToConfig($data)
+  {
     if (!file_exists($this->configFileName)) {
       if (@file_put_contents($this->configFileName, '')) {
         $data['CONFIG HELP'] = [
@@ -109,5 +111,26 @@ class Configuration
         return false;
       }
     }
+  }
+
+  public function getDefaultDisabledModules()
+  {
+    return [
+        '8ballCommand',
+        'killCommand',
+        'marathonCommand',
+        'randomCommand',
+        'donationHandler',
+        'hostHandler',
+        'phraseHandler',
+        'subscribeHandler',
+        'bankheistSystem',
+        'betSystem',
+        'bidSystem',
+        'greetingSystem',
+        'levelQueueSystem',
+        'pollSystem',
+        'queueSystem',
+    ];
   }
 }
