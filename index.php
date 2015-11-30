@@ -20,9 +20,9 @@ $config = new Configuration();
   <link href="app/css/<?= (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 'style_dark') ?>.css" rel="stylesheet" type="text/css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <script src="/app/js/jquery-1.11.3.min.js" type="text/javascript"></script>
-  <script src="/app/js/spark-md5.min.js" type="text/javascript"></script>
-  <script src="/app/js/login.min.js" type="text/javascript"></script>
+  <script src="app/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+  <script src="app/js/spark-md5.min.js" type="text/javascript"></script>
+  <script src="app/js/login.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="page-wrapper">

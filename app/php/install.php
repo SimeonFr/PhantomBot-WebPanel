@@ -43,9 +43,9 @@ function saveError()
   <meta charset="UTF-8">
   <title></title>
   <link href="../css/<?= (array_key_exists('theme', $config->paths) ? $config->paths['theme'] : 'style_dark') ?>.css" rel="stylesheet" type="text/css"/>
-  <script src="/app/js/jquery-1.11.3.min.js" type="text/javascript"></script>
-  <script src="/app/js/spark-md5.min.js" type="text/javascript"></script>
-  <script src="/app/js/install.min.js" type="text/javascript"></script>
+  <script src="../js/jquery-1.11.3.min.js" type="text/javascript"></script>
+  <script src="../js/spark-md5.min.js" type="text/javascript"></script>
+  <script src="../js/install.min.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="page-wrapper">
@@ -64,7 +64,7 @@ function saveError()
     <div class="panel-body">
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <form action="install.php" method="post" name="step1"
+          <form action="<?= filter_input(INPUT_SERVER, 'PHP_SELF') ?>" method="post" name="step1"
                 style="display:<?= ($nextInstallationStep == 1 ? 'block' : 'none') ?>">
             <h2>Hey!</h2>
 
@@ -141,7 +141,7 @@ function saveError()
             </p>
 
             <p>
-              Proceed to <a href="/update.php">The updater</a>!
+              Proceed to <a href="../../update.php">The updater</a>!
             </p>
           </div>
         </div>

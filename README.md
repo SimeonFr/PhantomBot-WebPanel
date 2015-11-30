@@ -37,3 +37,4 @@ Installation
 
 ###Known Issues###
   * The panel is known for not running smoothly when it's in a subfolder. I us thereby recommended to place it in the webroot of your webserver.
+  * Install generates permissions error after first form. To circumvent this go back  in your browser and submit the form again.

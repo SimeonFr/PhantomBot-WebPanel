@@ -80,7 +80,7 @@ if ($updateInstalledTo > -1) {
         <p><?=join('<br /><br />', $updateNotes)?></p>
         <?= $notification[1] ?>
         <p>
-          Proceed to <a href="/">login</a>!
+          Proceed to <a href="index.php">login</a>!
         </p>
       </div>
     </div>
