@@ -28,6 +28,8 @@ Installation
   2. Open the website in a browser (If you've installed apache locally this would be *http://localhost*).
   3. Walk through the presented installer.
   4. That's it! Enjoy!
+  
+  **Don't forget to check out Extras->Preferences for more in depth configuration/customization!**
 
 ###Updating###
   1. Download the latest release.
